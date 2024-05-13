@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+html {
+  font-family: 'Open Sans', sans-serif; /* Cambiando la fuente a Open Sans */
+  font-size: 16px;
+  background: #ffffff;
+}
+
+.sidebar {
+    position: fixed;
+    width: 25%;
+    height: 100%;
+    background: #152259;
+    font-size: 0.65em;
+    margin: 0; /* Eliminando los márgenes */
+    padding: 0; /* Eliminando el relleno */
+    top: 0; /* Posicionando en la parte superior */
+    left: 0; /* Posicionando en la parte izquierda */
+  }
+  .btn-cerrar-sesion {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    padding: 10px 20px;
+    background-color: #ff0000;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 999; /* Asegura que esté por encima del contenido */
+}
+.nav {
+  position: relative;
+  margin: 0 5%;
+  text-align: left;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: bold;
+}
+
+.nav ul {
+  list-style: none;
+  
+  li {
+    position: relative; /* Corrigiendo la ortografía de 'relative' */
+    margin: 3.2em 0;
+    
+    a {
+      line-height: 5em;
+      text-transform: uppercase;
+      text-decoration: none;
+      letter-spacing: 0.4em;
+      color: white; /* Cambiando el color del texto a blanco */
+      display: block;
+      transition: all ease-out 300ms;
+    }
+    
+    &.active a {
+      color: white;
+    }
+    
+    &:not(.active)::after {
+      opacity: 0.2;
+    }
+    
+    &:not(.active):hover a {
+      color: rgba(255, 255, 255, 0.75); /* Cambiando el color del texto en hover */
+    }
+    
+    &::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 0.2em;
+      background: black;
+      left: 0;
+      bottom: 0;
+      background-image: linear-gradient(to right, #ff0000, #1eff00);
+    }
+  }
+}
+
+.twitter {
+  position: relative;
+  width: 75%;
+  float: right;
+  height: 100vh;
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  
+  a {
+    position: relative;
+    
+    img {
+      width: 48px;
+      height: 48px;
+    }
+  }
+  
+  p {
+    text-transform: uppercase;
+    font-size: 1em;
+    letter-spacing: 0.1em;
+    color: #FFF;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+}
