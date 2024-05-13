@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Principal Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Estilos para el mensaje de bienvenida */
+        .welcome-message {
+            text-align: center;
+            background-color: #f0f0f0;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* Estilos para la barra de navegación */
+        .navbar {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+        }
+
+        .navbar-brand {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Estilos para el contenido */
+        .container {
+            margin-top: 20px;
+        }
+
+        .search-box {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="d-flex">
+                <!-- Botón de cerrar sesión -->
+                <button class="btn btn-outline-light mr-2" onclick="cerrarSesion()">Cerrar Sesión</button>
+                <!-- Botón de búsqueda -->
+                <button id="btnBuscar" class="btn btn-outline-light d-none mr-2" onclick="mostrarBusqueda()">Buscar</button>
+            </div>
+            <a class="navbar-brand" href="#">
+                <img src="logo.png" alt="School Center Logo" height="30">
+                School Center
+            </a>
+        </div>
+    </nav>
+
+    <!-- Mensaje de bienvenida -->
+    <div class="welcome-message">
+        <h2>Bienvenido</h2>
+        <p>Gracias por iniciar sesión. ¡Disfruta de tu tiempo en la página principal!</p>
+    </div>
+
+    <!-- Mensaje de error (oculto por defecto) -->
+    <?php if (isset($error_message)) : ?>
+        <div class="error-message">
+            <?php echo $error_message; ?>
+        </div>
+    <?php endif; ?>
+
+    <!-- Contenido -->
+    <div class="container">
+        <h1>Welcome to the Principal Page</h1>
+        <!-- Contenido de tu página principal aquí -->
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        // Función para cerrar sesión
+        function cerrarSesion() {
+            // Agrega aquí la lógica para cerrar sesión
+        }
+
+        // Función para mostrar el botón de búsqueda si estamos en maestros o alumnos
+        function mostrarBusqueda() {
+            // Agrega aquí la lógica para mostrar el botón de búsqueda
+        }
+    </script>
+</body>
+</html>
