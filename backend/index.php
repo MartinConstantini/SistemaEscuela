@@ -34,10 +34,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["accion"]) && $_POST["a
 
         // Almacena el nombre de la escuela en la variable $escuela
         $escuela = $result_escuela['Escuela'];
+        
+        // Realiza la nueva consulta para obtener el nombre del estudiante
+        $consulta_nombre = "SELECT `Nombre` FROM `adminis` WHERE `Email` = :email";
+        $statement_nombre = $conexion->prepare($consulta_nombre);
+        $statement_nombre->execute(array(":email" => $email));
+        $result_nombre = $statement_nombre->fetch(PDO::FETCH_ASSOC);
+
+
+
+// Almacena el nombre del estudiante en la variable $nombre
+        $nombre = $result_nombre['Nombre'];
+
         // Almacena la escuela en una sesión
         session_start();
         $_SESSION['escuela'] = $escuela;
-
+        $_SESSION['nombre'] = $nombre;
         // Redirige a la página principal
         header("Location: ../principal/index.php");
         exit();
