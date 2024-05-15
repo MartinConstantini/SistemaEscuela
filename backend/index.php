@@ -12,6 +12,7 @@ try {
 }
 
 $error_message = ""; // Inicializa el mensaje de error como vacío
+$escuela = ""; // Inicializa la variable de la escuela
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["accion"]) && $_POST["accion"] == "login") {
     $email = $_POST["email"];
@@ -23,9 +24,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["accion"]) && $_POST["a
     $statement->execute(array(":email" => $email, ":password" => $password));
     $usuario = $statement->fetch(PDO::FETCH_ASSOC);
 
-    // Si se encuentra un usuario con las credenciales proporcionadas, redirige a la página principal
+    // Si se encuentra un usuario con las credenciales proporcionadas
     if ($usuario) {
-        header("Location: ../principal/index.html");
+        // Realiza la nueva consulta para obtener el nombre de la escuela
+        $consulta_escuela = "SELECT `Escuela` FROM `adminis` WHERE `Email` = :email";
+        $statement_escuela = $conexion->prepare($consulta_escuela);
+        $statement_escuela->execute(array(":email" => $email));
+        $result_escuela = $statement_escuela->fetch(PDO::FETCH_ASSOC);
+
+        // Almacena el nombre de la escuela en la variable $escuela
+        $escuela = $result_escuela['Escuela'];
+        // Almacena la escuela en una sesión
+        session_start();
+        $_SESSION['escuela'] = $escuela;
+
+        // Redirige a la página principal
+        header("Location: ../principal/index.php");
         exit();
     } else {
         // Si las credenciales son incorrectas, establece el mensaje de error
@@ -33,8 +47,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["accion"]) && $_POST["a
     }
 }
 
-// Si hay un mensaje de error, no redirigir al usuario
-if (!empty($error_message)) {
+// Si hay un mensaje de error o la escuela no está definida, no redirigir al usuario
+if (!empty($error_message) || empty($escuela)) {
     header("Location: ../index.html");
     exit(); // Termina el script
 }
