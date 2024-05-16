@@ -237,7 +237,7 @@ $nombre = $_SESSION['nombre'];
                 <span class="text">Export CSV</span>
                 </a>
 
-                <a href="#" class="btn btn-light" style="background-color: #509CDB; color: white;">
+                <a href="test.php" class="btn btn-light" style="background-color: #509CDB; color: white;">
                 <span class="text">Add student</span>
                 </a>
 
@@ -332,15 +332,18 @@ try {
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
-                </div>
-                <div class="modal-body">Estas por Salir</div>
-                <div class="modal-footer">
+                            </div>
+                            <div class="modal-body">Estas por Salir</div>
+                        <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
                     <a class="btn btn-primary" href="logout.php">Salir</a>
                 </div>
             </div>
         </div>
     </div>
+
+<!-- Modal para add alums-->
+
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
