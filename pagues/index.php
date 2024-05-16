@@ -9,7 +9,7 @@ $escuela = $_SESSION['escuela'];
 $nombre = $_SESSION['nombre'];
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
 
@@ -26,10 +26,10 @@ $nombre = $_SESSION['nombre'];
         rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="../css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
 
@@ -54,46 +54,58 @@ $nombre = $_SESSION['nombre'];
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item rounded">
-                <a class="nav-link" href="dashboar.php" style="color: white;">
-                <i class="fas fa-fw fa-house"></i>
-                <span>Dashboard</span>
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">
+                    <i class="fas fa-fw fa-house"></i>
+                    <span>Dashboard</span></a>
+            </li>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Components</span>
                 </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="py-2 collapse-inner rounded" style="background-color: #509CDB;">
+                        <h6 class="collapse-header" style="color: #ffffff;">Custom Components:</h6>
+                        <a class="collapse-item" href="buttons.html" style="color: #ffffff; text-decoration: none;" onmouseover="this.style.color='#2D88D4';" onmouseout="this.style.color='#ffffff';">Buttons</a>
+                        <a class="collapse-item" href="cards.html" style="color: #2D88D4; text-decoration: none;" onmouseover="this.style.color='#2D88D4';" onmouseout="this.style.color='#ffffff';">Cards</a>
+
+                    </div>
+                </div>
             </li>
 
-            <li class="nav-item rounded">
-                <a class="nav-link" href="teachers.php" style="color: white;">
-                <i class="fas fa-fw fa-chalkboard-user"></i>
-                <span>Teachers</span>
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Utilities</span>
                 </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Custom Utilities:</h6>
+                        <a class="collapse-item" href="utilities-color.html">Colors</a>
+                        <a class="collapse-item" href="utilities-border.html">Borders</a>
+                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
+                        <a class="collapse-item" href="utilities-other.html">Other</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="charts.html">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Charts</span></a>
             </li>
 
-            <li class="nav-item rounded" style="background-color: #2D88D4;">
-                <a class="nav-link" href="tablesAlumnos.php" style="color: white;">
-                <i class="fas fa-fw fa-user-pen"></i>
-                <span>Students/class</span>
-                </a>
-            </li>
-
-            <li class="nav-item rounded">
-                <a class="nav-link" href="#" style="color: white;">
-                <i class="fas fa-fw fa-file-invoice-dollar"></i>
-                <span>Billing</span>
-                </a>
-            </li>
-
-            <li class="nav-item rounded">
-                <a class="nav-link" href="#" style="color: white;">
-                <i class="fas fa-fw fa-gear"></i>
-                <span>Setings and profile</span>
-                </a>
-            </li>
-
-            <li class="nav-item rounded">
-                <a class="nav-link" href="#" style="color: white;">
-                <i class="fas fa-fw fa-file-lines"></i>
-                <span>Exams</span>
-                </a>
+            <!-- Nav Item - Tables -->
+            <li class="nav-item active">
+                <a class="nav-link" href="tables.html">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Tablas Alumnos</span></a>
             </li>
 
             <!-- Divider -->
@@ -232,16 +244,7 @@ $nombre = $_SESSION['nombre'];
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid" >
-                <a href="#" class="btn btn-light" style="color: #2671B1;">
-                <span class="text">Export CSV</span>
-                </a>
-
-                <a href="#" class="btn btn-light" style="background-color: #509CDB; color: white;">
-                <span class="text">Add student</span>
-                </a>
-
-
+                <div class="container-fluid">
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">

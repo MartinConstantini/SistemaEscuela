@@ -61,15 +61,15 @@ $nombre = $_SESSION['nombre'];
                 </a>
             </li>
 
-            <li class="nav-item rounded">
+            <li class="nav-item rounded" style="background-color: #2D88D4;">
                 <a class="nav-link" href="teachers.php" style="color: white;">
                 <i class="fas fa-fw fa-chalkboard-user"></i>
                 <span>Teachers</span>
                 </a>
             </li>
 
-            <li class="nav-item rounded" style="background-color: #2D88D4;">
-                <a class="nav-link" href="tablesAlumnos.php" style="color: white;">
+            <li class="nav-item rounded">
+                <a class="nav-link" href="tablesAlumnos.php" style="color: white;">            
                 <i class="fas fa-fw fa-user-pen"></i>
                 <span>Students/class</span>
                 </a>
@@ -238,14 +238,14 @@ $nombre = $_SESSION['nombre'];
                 </a>
 
                 <a href="#" class="btn btn-light" style="background-color: #509CDB; color: white;">
-                <span class="text">Add student</span>
+                <span class="text">Add Teachers</span>
                 </a>
 
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Students From <?php echo $escuela; ?></h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Teachers From <?php echo $escuela; ?></h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -260,7 +260,7 @@ $password = "root";
 try {
     $conexion = new PDO($servidor, $usuario, $password);
     // Preparar consulta SQL
-    $consulta = $conexion->prepare("SELECT `Ncontrol`, `Nombre`, `Apaterno`, `Amaterno`, `Password`, `Genero`, `Email`, `Inscripcion`, `Escuela` FROM `estudiante` WHERE `Escuela` = :escuela "); // Cambiado a ':escuela' con minúscula
+    $consulta = $conexion->prepare("SELECT `Area`, `Nombre`, `Apaterno`, `Amaterno`, `Email`, `Materia`, `Genero`, `Phone`, `Id` FROM `maestros` WHERE `Escuela` = :escuela "); // Cambiado a ':escuela' con minúscula
     $consulta->bindParam(':escuela', $escuela, PDO::PARAM_STR);
     // Ejecutar consulta
     $consulta->execute();
@@ -274,29 +274,29 @@ try {
 <!-- Ahora, vamos a imprimir los resultados en la tabla -->
 <thead>
     <tr>
-        <th>N Control</th>
+        <th>Area</th>
         <th>Nombre</th>
         <th>Apellido P</th>
         <th>Apellido M</th>
-        <th>Password</th>
-        <th>Género</th>
         <th>Email</th>
-        <th>Inscripción</th>
-        <th>Escuela</th>
+        <th>Materia</th>
+        <th>Genero</th>
+        <th>Tel</th>
+        <th>ID</th>
     </tr>
 </thead>
 <tbody>
     <?php foreach ($resultados as $fila) : ?>
         <tr>
-            <td><?php echo $fila['Ncontrol']; ?></td>
+            <td><?php echo $fila['Area']; ?></td>
             <td><?php echo $fila['Nombre']; ?></td>
             <td><?php echo $fila['Apaterno']; ?></td>
             <td><?php echo $fila['Amaterno']; ?></td>
-            <td><?php echo $fila['Password']; ?></td>
-            <td><?php echo $fila['Genero']; ?></td>
             <td><?php echo $fila['Email']; ?></td>
-            <td><?php echo $fila['Inscripcion']; ?></td>
-            <td><?php echo $fila['Escuela']; ?></td>
+            <td><?php echo $fila['Materia']; ?></td>
+            <td><?php echo $fila['Genero']; ?></td>
+            <td><?php echo $fila['Phone']; ?></td>
+            <td><?php echo $fila['Id']; ?></td>
         </tr>
     <?php endforeach; ?>
 </tbody>

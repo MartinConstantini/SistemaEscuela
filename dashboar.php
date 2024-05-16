@@ -54,7 +54,8 @@ $nombre = $_SESSION['nombre'];
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item rounded">
+
+            <li class="nav-item rounded" style="background-color: #2D88D4;">
                 <a class="nav-link" href="dashboar.php" style="color: white;">
                 <i class="fas fa-fw fa-house"></i>
                 <span>Dashboard</span>
@@ -68,7 +69,7 @@ $nombre = $_SESSION['nombre'];
                 </a>
             </li>
 
-            <li class="nav-item rounded" style="background-color: #2D88D4;">
+            <li class="nav-item rounded">
                 <a class="nav-link" href="tablesAlumnos.php" style="color: white;">
                 <i class="fas fa-fw fa-user-pen"></i>
                 <span>Students/class</span>
@@ -95,6 +96,7 @@ $nombre = $_SESSION['nombre'];
                 <span>Exams</span>
                 </a>
             </li>
+            
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -128,31 +130,8 @@ $nombre = $_SESSION['nombre'];
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
-
+                        
+                        <p class="mb-4">Learn how to launch faster watch our webinar fot tips from our esperts and get a limited time offer.</p>
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
@@ -232,77 +211,13 @@ $nombre = $_SESSION['nombre'];
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid" >
-                <a href="#" class="btn btn-light" style="color: #2671B1;">
-                <span class="text">Export CSV</span>
-                </a>
-
-                <a href="#" class="btn btn-light" style="background-color: #509CDB; color: white;">
-                <span class="text">Add student</span>
-                </a>
-
-
+                <div class="container-fluid">
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Students From <?php echo $escuela; ?></h6>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <?php
-// Conexión a la base de datos
-$servidor = "mysql:host=localhost:8889;dbname=escuela;charset=utf8";
-$usuario = "root";
-$password = "root";
-
-
-try {
-    $conexion = new PDO($servidor, $usuario, $password);
-    // Preparar consulta SQL
-    $consulta = $conexion->prepare("SELECT `Ncontrol`, `Nombre`, `Apaterno`, `Amaterno`, `Password`, `Genero`, `Email`, `Inscripcion`, `Escuela` FROM `estudiante` WHERE `Escuela` = :escuela "); // Cambiado a ':escuela' con minúscula
-    $consulta->bindParam(':escuela', $escuela, PDO::PARAM_STR);
-    // Ejecutar consulta
-    $consulta->execute();
-    // Obtener resultados
-    $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
-} catch (PDOException $e) {
-    echo "Error al conectar a la base de datos: " . $e->getMessage();
-}
-?>
-
-<!-- Ahora, vamos a imprimir los resultados en la tabla -->
-<thead>
-    <tr>
-        <th>N Control</th>
-        <th>Nombre</th>
-        <th>Apellido P</th>
-        <th>Apellido M</th>
-        <th>Password</th>
-        <th>Género</th>
-        <th>Email</th>
-        <th>Inscripción</th>
-        <th>Escuela</th>
-    </tr>
-</thead>
-<tbody>
-    <?php foreach ($resultados as $fila) : ?>
-        <tr>
-            <td><?php echo $fila['Ncontrol']; ?></td>
-            <td><?php echo $fila['Nombre']; ?></td>
-            <td><?php echo $fila['Apaterno']; ?></td>
-            <td><?php echo $fila['Amaterno']; ?></td>
-            <td><?php echo $fila['Password']; ?></td>
-            <td><?php echo $fila['Genero']; ?></td>
-            <td><?php echo $fila['Email']; ?></td>
-            <td><?php echo $fila['Inscripcion']; ?></td>
-            <td><?php echo $fila['Escuela']; ?></td>
-        </tr>
-    <?php endforeach; ?>
-</tbody>
-
-                                </table>
-                            </div>
                         </div>
                     </div>
 

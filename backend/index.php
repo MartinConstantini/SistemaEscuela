@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["accion"]) && $_POST["a
         $_SESSION['escuela'] = $escuela;
         $_SESSION['nombre'] = $nombre;
         // Redirige a la página principal
-        header("Location: ../principal/index.php");
+        header("Location: ../dashboar.php");
         exit();
     } else {
         // Si las credenciales son incorrectas, establece el mensaje de error
