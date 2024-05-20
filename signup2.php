@@ -126,7 +126,7 @@
 <body>
     <h1>Udemy school, Choose your password</h1>
     <div class="container">
-        <form id="loginForm" method="POST" action="backend/index.php" onsubmit="return validateForm()">
+    <form id="loginForm" method="POST" action="backend/singback2.php">
             <input type="hidden" name="accion" value="login">
 
             <div class="form-group">
