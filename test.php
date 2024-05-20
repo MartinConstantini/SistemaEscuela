@@ -353,7 +353,6 @@ try {
                             </button>
                             </div>
                             <div class="modal-body">
-
                             <!--FORM-->
                             <form>
   <div class="form-row">
