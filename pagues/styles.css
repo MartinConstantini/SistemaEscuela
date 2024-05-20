@@ -1,114 +1,84 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #dcdcdc; /* Cambiado a gris claro */
+        }
 
-html {
-  font-family: 'Open Sans', sans-serif; /* Cambiando la fuente a Open Sans */
-  font-size: 16px;
-  background: #ffffff;
-}
+        h1 {
+            text-align: center; 
+            font-size: 24px;
+            margin-bottom: 0px;
+            margin-top: 50px; /* Añadido espacio en la parte superior */
+        }
+        h2 {
+            text-align: center; 
+            font-size: 16px;
+            margin-bottom: 2px;
+            margin-top: 2px; /* Añadido espacio en la parte superior */
+        }
+        .container {
+            width: 500px;
+            margin: 100px auto;
+            text-align: center;
+            background-color: white; /* Cambiado a blanco */
+            padding: 20px; /* Añadido un poco de espacio alrededor del formulario */
+            border-radius: 0px; /* Añadido un poco de borde redondeado al formulario */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Añadida una sombra alrededor del formulario */
+        }
 
-.sidebar {
-    position: fixed;
-    width: 25%;
-    height: 100%;
-    background: #152259;
-    font-size: 0.65em;
-    margin: 0; /* Eliminando los márgenes */
-    padding: 0; /* Eliminando el relleno */
-    top: 0; /* Posicionando en la parte superior */
-    left: 0; /* Posicionando en la parte izquierda */
-  }
-  .btn-cerrar-sesion {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    padding: 10px 20px;
-    background-color: #ff0000;
-    color: #ffffff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    z-index: 999; /* Asegura que esté por encima del contenido */
-}
-.nav {
-  position: relative;
-  margin: 0 5%;
-  text-align: left;
-  top: 50%;
-  transform: translateY(-50%);
-  font-weight: bold;
-}
+        h1 {
+            text-align: center; 
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
 
-.nav ul {
-  list-style: none;
-  
-  li {
-    position: relative; /* Corrigiendo la ortografía de 'relative' */
-    margin: 3.2em 0;
-    
-    a {
-      line-height: 5em;
-      text-transform: uppercase;
-      text-decoration: none;
-      letter-spacing: 0.4em;
-      color: white; /* Cambiando el color del texto a blanco */
-      display: block;
-      transition: all ease-out 300ms;
-    }
-    
-    &.active a {
-      color: white;
-    }
-    
-    &:not(.active)::after {
-      opacity: 0.2;
-    }
-    
-    &:not(.active):hover a {
-      color: rgba(255, 255, 255, 0.75); /* Cambiando el color del texto en hover */
-    }
-    
-    &::after {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 0.2em;
-      background: black;
-      left: 0;
-      bottom: 0;
-      background-image: linear-gradient(to right, #ff0000, #1eff00);
-    }
-  }
-}
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left; /* Centrar texto del grupo de formulario */
+        }
 
-.twitter {
-  position: relative;
-  width: 75%;
-  float: right;
-  height: 100vh;
-  
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-  }
-  
-  a {
-    position: relative;
+        label {
+            margin: 0 auto; /* Centrar los inputs */
+            display: block; 
+            font-weight: bold; /* Hacer el texto del label en negrita */
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 80%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 0px;
+            margin: 0 auto; /* Centrar los inputs */
+            display: block; /* Hacer que los inputs ocupen todo el ancho disponible */
+        }
+
+        button {
+            background-color: #2D88D4; /* Cambiar el color del botón */
+            color: white;
+            padding: 10px 10px;
+            border: none;
+            border-radius: 0px;
+            cursor: pointer;
+            margin: 0 auto; /* Centrar los inputs */
+            display: block; 
+            width: 84.5%;
+        }
+
+        button:hover {
+            background-color: #1F6CB7; /* Cambiar color de fondo en hover */
+        }
+
+        .signup-text {
+            margin-top: 15px; /* Agregar espacio entre el botón y el texto de registro */
+        }
+
+        .signup-link {
+            color: #2D88D4; /* Cambiar color del enlace */
+            text-decoration: none; /* Quitar subrayado */
+        }
+
+        .signup-link:hover {
+            text-decoration: underline; /* Agregar subrayado al pasar el mouse */
+        }
     
-    img {
-      width: 48px;
-      height: 48px;
-    }
-  }
-  
-  p {
-    text-transform: uppercase;
-    font-size: 1em;
-    letter-spacing: 0.1em;
-    color: #FFF;
-    font-weight: bold;
-    margin-top: 20px;
-  }
-}

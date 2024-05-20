@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Archivo CSS para estilos -->
+   <link rel="stylesheet" href="styles.css">
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -20,11 +20,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f8f9fc;
-        }
-        h1 {
-            font-size: 24px; /* Reducir el tamaño de fuente del título principal */
-            margin-top: -100px; /* Reducir el margen superior */
+            background-color: #ffffff;
         }
         .container {
             max-width: 600px; /* Ajustar el ancho máximo del contenedor */
@@ -120,57 +116,87 @@
         .button-container {
             text-align: center; /* Centrar el botón */
         }
+        .header {
+            text-align: center;
+            padding: 20px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            
+            background-color: #ffffff;
+        }
+        .footer {
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: #ffffff;
+        }
+        .main-content {
+            margin-top: 80px; /* Ajustar el margen superior para evitar que el contenido se superponga con el encabezado */
+            margin-bottom: 80px; /* Ajustar el margen inferior para evitar que el contenido se superponga con el pie de página */
+        }
     </style>
 </head>
 <body>
-    <h1>Welcome, create your school account</h1>
-    <div class="container">
-            <form id="loginForm" method="POST" action="backend/singbak.php">
-            <input type="hidden" name="accion" value="login">
+    <div class="header">
+        <h1>Welcome, create your school account</h1>
+    </div>
 
-            <div class="form-group">
-                <h2>It is our great pleasure to have</h2>
-                <h2>you on board!</h2>
-            </div>
-            <div class="form-group">
-                <input type="text" name="namead" id="namead" placeholder="Enter the name of admin" required>
-            </div>
-            <div class="form-group">
-                <input type="text" name="namesc" id="namesc" placeholder="Enter the name of school" required>
-            </div>
-            <div class="form-group">
-                <input type="text" name="email" id="email" placeholder="Enter the school email" required>
-            </div>
-            <div class="form-group button-container">
-            <button type="submit" name="btnsig">Next</button>
-            </div>
+    <div class="main-content">
+        <div class="container" style="width: 500px;">
+            <form id="loginForm" method="POST" action="../backend/singbak.php">
+                <input type="hidden" name="accion" value="login">
 
-        </form>
-        <div class="signup-text">
-            <p>Already have an account? <a href="SignUp" class="signup-link">Sign Up</a></p>
+                <div class="form-group">
+                    <h2>It is our great pleasure to have</h2>
+                    <h2>you on board!</h2>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="namead" id="namead" placeholder="Enter the name of admin" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="namesc" id="namesc" placeholder="Enter the name of school" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="email" id="email" placeholder="Enter the school email" required>
+                </div>
+                <div class="form-group button-container">
+                    <button type="submit" name="btnsig">Next</button>
+                </div>
+
+            </form>
+            <div class="signup-text">
+                <p>Already have an account? <a href="SignUp" class="signup-link">Sign Up</a></p>
+            </div>
         </div>
     </div>
-    <div class="progress-container">
-        <div class="progress-circles">
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-        </div>
-        <div class="progress progress-sm mb-2">
-            <div class="progress-bar" role="progressbar" style="width: 5%" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
-        </div>
-        <div class="progress-text">
-            <div>
-                <p class="text-title">Your details</p>
-                <p class="text-subtitle">Name and Email</p>
+
+    <div class="footer">
+        <div class="progress-container">
+            <div class="progress-circles">
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
             </div>
-            <div>
-                <p class="text-title">Choose a password</p>
-                <p class="text-subtitle">Choose a secure password</p>
+            <div class="progress progress-sm mb-2">
+                <div class="progress-bar" role="progressbar" style="width: 5%" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
-            <div>
-                <p class="text-title">Invite your team</p>
-                <p class="text-subtitle">Start collaborating</p>
+            <div class="progress-text">
+                <div>
+                    <p class="text-title">Your details</p>
+                    <p class="text-subtitle">Name and Email</p>
+                </div>
+                <div>
+                    <p class="text-title">Choose a password</p>
+                    <p class="text-subtitle">Choose a secure password</p>
+                </div>
+                <div>
+                    <p class="text-title">Invite your team</p>
+                    <p class="text-subtitle">Start collaborating</p>
+                </div>
             </div>
         </div>
     </div>

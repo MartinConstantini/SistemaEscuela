@@ -10,11 +10,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION["password"] = $password;
 
     // Redireccionar a la siguiente página
-    header("Location: ../signup3.php");
+    header("Location: ../pagues/signup3.php");
     exit;
 } else {
     // Si se intenta acceder a este archivo directamente sin enviar el formulario, redireccionar al formulario
-    header("Location: ../signup2.php");
+    header("Location: ../pagues/signup2.php");
     exit;
 }
 ?>

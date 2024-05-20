@@ -13,7 +13,7 @@ if(isset($_POST['namead'], $_POST['namesc'], $_POST['email'])) {
     $_SESSION['email'] = $email;
     
     // Redireccionar a otra página
-    header("Location: ../signup2.php");
+    header("Location: ../pagues/signup2.php");
     exit();
 } else {
     // Manejar caso en que no se reciban datos del formulario
