@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["accion"]) && $_POST["a
 
 // Si hay un mensaje de error o la escuela no está definida, no redirigir al usuario
 if (!empty($error_message) || empty($escuela)) {
-    header("Location: ../index.html");
+    header("Location: ..pagues/login.php");
     exit(); // Termina el script
 }
 ?>

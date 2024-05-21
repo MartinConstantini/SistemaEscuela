@@ -29,9 +29,9 @@
 
             <div class="form-group">
                 <div class="input-group">
-                    <input type="password" id="password" class="password-input form-control" placeholder="Enter your password">
+                    <input type="password" id="password" name="password" class="password-input form-control" placeholder="Enter your password">
                     <div class="input-group-append">
-                        <button type="button" class="password-icon btn btn-outline-secondary" style="border: none;">
+                        <button type="button" class="password-icon btn btn-outline-secondary" style="border: none;" onclick="togglePasswordVisibility('password', 'togglePasswordIcon1')">
                             <i class="fas fa-eye" id="togglePasswordIcon1"></i>
                         </button>
                     </div>
@@ -44,9 +44,9 @@
 
             <div class="form-group">
                 <div class="input-group">
-                    <input type="password" id="password2" class="password-input form-control" placeholder="Repeat your password">
+                    <input type="password" id="password2" name="password2" class="password-input form-control" placeholder="Repeat your password">
                     <div class="input-group-append">
-                        <button type="button" class="password-icon btn btn-outline-secondary" style="border: none;">
+                        <button type="button" class="password-icon btn btn-outline-secondary" style="border: none;" onclick="togglePasswordVisibility('password2', 'togglePasswordIcon2')">
                             <i class="fas fa-eye" id="togglePasswordIcon2"></i>
                         </button>
                     </div>
@@ -57,7 +57,7 @@
                 <h2>Must be at least 8 characters.</h2>
             </div>
             <div class="form-group">
-                <button type="submit" name="btnpass" onclick="return validateForm()">Next</button>
+                <button type="submit" name="btnpass" class="btn btn-primary" onclick="return validateForm()">Next</button>
             </div>
         </form>
     </div>

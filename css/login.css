@@ -1,0 +1,179 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #dcdcdc; /* Cambiado a gris claro */
+    font-size: 14px; /* Reducir el tamaño de fuente base */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    max-width: 600px; /* Ajustar el ancho máximo del contenedor */
+    width: 90%; /* Asegurar que el contenedor ocupe el 90% del ancho disponible */
+    margin: 100px auto; /* Centrar el contenedor verticalmente y alinear con la parte superior */
+    padding: 20px; /* Añadido un poco de espacio alrededor del formulario */
+    box-sizing: border-box;
+    background-color: white; /* Cambiado a blanco */
+    border-radius: 8px; /* Añadido un poco de borde redondeado al formulario */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Añadida una sombra alrededor del formulario */
+    text-align: center;
+}
+
+h1, h2 {
+    text-align: center; 
+    margin-bottom: 0px; /* Reducir el margen inferior */
+    margin-top: 50px; /* Añadido espacio en la parte superior */
+}
+
+h1 {
+    font-size: 24px; /* Tamaño de fuente para h1 */
+}
+
+h2 {
+    font-size: 16px; /* Tamaño de fuente para h2 */
+    margin-bottom: 2px;
+    margin-top: 2px; /* Añadido espacio en la parte superior */
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left; /* Centrar texto del grupo de formulario */
+}
+
+label {
+    display: block; 
+    font-weight: bold; /* Hacer el texto del label en negrita */
+}
+
+input[type="text"],
+input[type="password"],
+button[type="submit"] {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 0px;
+    margin: 0 auto; /* Centrar los inputs y botón */
+    display: block; /* Hacer que los inputs y botón ocupen todo el ancho disponible */
+    font-size: 14px; /* Ajustar el tamaño de fuente */
+}
+
+button {
+    background-color: #2D88D4; /* Cambiar el color del botón */
+    color: white;
+    width: 84.5%;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #1F6CB7; /* Cambiar color de fondo en hover */
+}
+
+.signup-text p {
+    margin-top: 15px; /* Agregar espacio entre el botón y el texto de registro */
+    font-size: 14px; /* Reducir el tamaño de fuente del texto de registro */
+}
+
+.signup-link {
+    color: #2D88D4; /* Cambiar color del enlace */
+    text-decoration: none; /* Quitar subrayado */
+}
+
+.signup-link:hover {
+    text-decoration: underline; /* Agregar subrayado al pasar el mouse */
+}
+
+.progress-container {
+    width: 440px; /* Ancho fijo de la barra de progreso */
+    margin: 40px auto 0 auto; /* Centrando la barra de progreso y reducir margen */
+    text-align: center;
+    position: relative;
+}
+
+.progress-circles {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    top: -13px; /* Mover los círculos hacia arriba */
+}
+
+.circle {
+    width: 25px; /* Reducir el tamaño de los círculos */
+    height: 25px; /* Reducir el tamaño de los círculos */
+    border-radius: 50%;
+    background-color: #F2F4F7;
+    display: inline-block;
+    position: relative;
+}
+
+.circle:first-child {
+    background-color: #007bff; /* El primer círculo es azul */
+}
+
+.circle::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px; /* Reducir el tamaño del círculo interior */
+    height: 12px; /* Reducir el tamaño del círculo interior */
+    background-color: white;
+    border-radius: 50%;
+}
+
+.progress {
+    height: 8px; /* Reducir la altura de la barra de progreso */
+    background-color: #e9ecef;
+    position: relative;
+    margin-top: 15px; /* Reducir el margen superior */
+    width: 100%; /* Asegurar que la barra de progreso llene el contenedor */
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: #007bff;
+}
+
+.progress-text {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px; /* Reducir el margen superior */
+}
+
+.progress-text div {
+    text-align: center;
+    width: 33%; /* Ancho igual para cada bloque de texto */
+    font-size: 12px; /* Reducir el tamaño de fuente del texto */
+}
+
+.progress-text .text-title {
+    color: #344054;
+    margin: 0;
+}
+
+.progress-text .text-subtitle {
+    color: #667085;
+    margin: 0;
+}
+
+.header, .footer {
+    text-align: center;
+    width: 100%;
+    background-color: #ffffff;
+    position: fixed;
+    z-index: 1000;
+}
+
+.header {
+    top: 0;
+    padding: 20px 0;
+}
+
+.footer {
+    bottom: 0;
+}

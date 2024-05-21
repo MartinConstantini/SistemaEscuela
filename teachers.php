@@ -1,7 +1,7 @@
 <?php session_start();
 if (empty($_SESSION['escuela']) || empty($_SESSION['nombre'])) {
     // Si está vacía, redirige a la página ../index.php
-    header("Location: /escuela/SistemaEscuela/");
+    header("Location: /escuela/pagues/login.php");
     exit(); // Termina el script
 }
 // Si la variable de sesión $escuela no está vacía, asigna su valor a la variable $escuela
@@ -219,7 +219,7 @@ $nombre = $_SESSION['nombre'];
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="../logout.php" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -237,7 +237,7 @@ $nombre = $_SESSION['nombre'];
                 <span class="text">Export CSV</span>
                 </a>
 
-                <a href="#" class="btn btn-light" style="background-color: #509CDB; color: white;">
+                <a href="#" class="btn btn-light" data-toggle="modal" data-target="#addTeach" style="background-color: #509CDB; color: white;">
                 <span class="text">Add Teachers</span>
                 </a>
 
@@ -260,7 +260,7 @@ $password = "root";
 try {
     $conexion = new PDO($servidor, $usuario, $password);
     // Preparar consulta SQL
-    $consulta = $conexion->prepare("SELECT `Area`, `Nombre`, `Apaterno`, `Amaterno`, `Email`, `Materia`, `Genero`, `Phone`, `Id` FROM `maestros` WHERE `Escuela` = :escuela "); // Cambiado a ':escuela' con minúscula
+    $consulta = $conexion->prepare("SELECT `Nombre`, `Subject`, `Class`, `Email`, `Genero` FROM `maestros` WHERE `Escuela` = :escuela "); // Cambiado a ':escuela' con minúscula
     $consulta->bindParam(':escuela', $escuela, PDO::PARAM_STR);
     // Ejecutar consulta
     $consulta->execute();
@@ -274,29 +274,21 @@ try {
 <!-- Ahora, vamos a imprimir los resultados en la tabla -->
 <thead>
     <tr>
-        <th>Area</th>
-        <th>Nombre</th>
-        <th>Apellido P</th>
-        <th>Apellido M</th>
+        <th>Name</th>
+        <th>Subject</th>
+        <th>Class</th>
         <th>Email</th>
-        <th>Materia</th>
-        <th>Genero</th>
-        <th>Tel</th>
-        <th>ID</th>
+        <th>Gender</th>
     </tr>
 </thead>
 <tbody>
     <?php foreach ($resultados as $fila) : ?>
         <tr>
-            <td><?php echo $fila['Area']; ?></td>
             <td><?php echo $fila['Nombre']; ?></td>
-            <td><?php echo $fila['Apaterno']; ?></td>
-            <td><?php echo $fila['Amaterno']; ?></td>
+            <td><?php echo $fila['Subject']; ?></td>
+            <td><?php echo $fila['Class']; ?></td>
             <td><?php echo $fila['Email']; ?></td>
-            <td><?php echo $fila['Materia']; ?></td>
             <td><?php echo $fila['Genero']; ?></td>
-            <td><?php echo $fila['Phone']; ?></td>
-            <td><?php echo $fila['Id']; ?></td>
         </tr>
     <?php endforeach; ?>
 </tbody>
@@ -336,11 +328,87 @@ try {
                 <div class="modal-body">Estas por Salir</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-primary" href="logout.php">Salir</a>
+                    <a class="btn btn-primary" href="backend/logout.php">Salir</a>
                 </div>
             </div>
         </div>
     </div>
+
+
+<!-- Modal para add Teachers-->
+<div class="modal" id="addTeach" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" >
+  <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Teacher</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                            </button>
+                            </div>
+                            <div class="modal-body">
+                            <!--FORM-->
+                            <form>
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="nombre">Nombre:</label>
+      <input type="text" class="form-control" id="nombre">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="apaterno">Apellido Paterno:</label>
+      <input type="text" class="form-control" id="apaterno">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="amaterno">Apellido Materno:</label>
+      <input type="text" class="form-control" id="amaterno">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="password">Contraseña:</label>
+      <input type="password" class="form-control" id="password">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="genero">Género:</label>
+      <select class="form-control" id="genero">
+        <option value="masculino">Masculino</option>
+        <option value="femenino">Femenino</option>
+        <option value="X">X</option>
+        <option value="X">Putito</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <label for="email">Correo Electrónico:</label>
+      <input type="email" class="form-control" id="email">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inscripcion">Número de Inscripción:</label>
+      <input type="number" class="form-control" id="inscripcion" min="1" max="15">
+    </div>
+    <!-- Otros campos sobrantes -->
+  </div>
+</form>
+
+                            <!--FIN FORM-->
+                            </div>
+                        <div class="modal-footer">
+                    <button class="btn btn-light btn-icon-split" style="background-color: #FFFFFF; color: #4F4F4F;" type="button" data-dismiss="modal">
+                
+                    <span class="icon" style="background-color: #FFFFFF">
+                        <i class="fas fa-circle-plus"></i>
+                        </span>
+                        <span class="text">Add Another</span>
+                    </button>
+                    <button class="btn btn-light" style="background-color: #F1F1F1; color: #4F4F4F;" type="button" data-dismiss="modal">Add Student</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- FIN Modal para add alums-->
+
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
