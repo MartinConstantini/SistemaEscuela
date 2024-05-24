@@ -14,7 +14,7 @@
         body {
             margin: 0;
             padding: 0;
-            font-size: 14px; /* Reducir el tamaño de fuente base */
+            font-size: 14px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -23,35 +23,35 @@
             background-color: #ffffff;
         }
         .container {
-            max-width: 600px; /* Ajustar el ancho máximo del contenedor */
-            width: 90%; /* Asegurar que el contenedor ocupe el 90% del ancho disponible */
-            margin: 0 auto; /* Centrar el contenedor en la página */
-            padding: 10px; /* Reducir el padding */
+            max-width: 600px;
+            width: 90%;
+            margin: 0 auto;
+            padding: 10px;
             box-sizing: border-box;
             background-color: white;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         .form-group {
-            margin-bottom: 15px; /* Reducir el margen inferior */
+            margin-bottom: 15px;
         }
         .form-group h2 {
-            font-size: 18px; /* Reducir el tamaño de fuente de los encabezados */
+            font-size: 18px;
         }
         .form-group input, .form-group button {
-            font-size: 14px; /* Ajustar el tamaño de fuente de los inputs y botón */
-            padding: 8px; /* Reducir el padding de los inputs y botón */
-            width: 100%; /* Ajustar el ancho de los inputs y botón */
+            font-size: 14px;
+            padding: 8px;
+            width: 100%;
         }
         .form-group button {
-            margin-top: 15px; /* Añadir margen superior al botón */
+            margin-top: 15px;
         }
         .signup-text p {
-            font-size: 14px; /* Reducir el tamaño de fuente del texto de signup */
+            font-size: 14px;
         }
         .progress-container {
-            width: 440px; /* Ancho fijo de la barra de progreso */
-            margin: 40px auto 0 auto; /* Centrando la barra de progreso y reducir margen */
+            width: 440px;
+            margin: 40px auto 0 auto;
             text-align: center;
             position: relative;
         }
@@ -60,18 +60,18 @@
             justify-content: space-between;
             align-items: center;
             position: relative;
-            top: -13px; /* Mover los círculos hacia arriba */
+            top: -13px;
         }
         .circle {
-            width: 25px; /* Reducir el tamaño de los círculos */
-            height: 25px; /* Reducir el tamaño de los círculos */
+            width: 25px;
+            height: 25px;
             border-radius: 50%;
             background-color: #F2F4F7;
             display: inline-block;
             position: relative;
         }
         .circle:first-child {
-            background-color: #007bff; /* El primer círculo es azul */
+            background-color: #007bff;
         }
         .circle::after {
             content: '';
@@ -79,17 +79,17 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 12px; /* Reducir el tamaño del círculo interior */
-            height: 12px; /* Reducir el tamaño del círculo interior */
+            width: 12px;
+            height: 12px;
             background-color: white;
             border-radius: 50%;
         }
         .progress {
-            height: 8px; /* Reducir la altura de la barra de progreso */
+            height: 8px;
             background-color: #e9ecef;
             position: relative;
-            margin-top: 15px; /* Reducir el margen superior */
-            width: 100%; /* Asegurar que la barra de progreso llene el contenedor */
+            margin-top: 15px;
+            width: 100%;
         }
         .progress-bar {
             height: 100%;
@@ -98,12 +98,12 @@
         .progress-text {
             display: flex;
             justify-content: space-between;
-            margin-top: 5px; /* Reducir el margen superior */
+            margin-top: 5px;
         }
         .progress-text div {
             text-align: center;
-            width: 33%; /* Ancho igual para cada bloque de texto */
-            font-size: 12px; /* Reducir el tamaño de fuente del texto */
+            width: 33%;
+            font-size: 12px;
         }
         .progress-text .text-title {
             color: #344054;
@@ -114,7 +114,7 @@
             margin: 0;
         }
         .button-container {
-            text-align: center; /* Centrar el botón */
+            text-align: center;
         }
         .header {
             text-align: center;
@@ -123,7 +123,6 @@
             top: 0;
             width: 100%;
             z-index: 1000;
-            
             background-color: #ffffff;
         }
         .footer {
@@ -135,8 +134,8 @@
             background-color: #ffffff;
         }
         .main-content {
-            margin-top: 80px; /* Ajustar el margen superior para evitar que el contenido se superponga con el encabezado */
-            margin-bottom: 80px; /* Ajustar el margen inferior para evitar que el contenido se superponga con el pie de página */
+            margin-top: 80px;
+            margin-bottom: 80px;
         }
     </style>
 </head>
@@ -147,6 +146,13 @@
 
     <div class="main-content">
         <div class="container" style="width: 500px;">
+            <?php
+            session_start();
+            if (isset($_SESSION["error"])) {
+                echo '<div class="alert alert-warning" role="alert">' . $_SESSION["error"] . '</div>';
+                unset($_SESSION["error"]);
+            }
+            ?>
             <form id="loginForm" method="POST" action="../backend/singbak.php">
                 <input type="hidden" name="accion" value="login">
 
@@ -166,7 +172,6 @@
                 <div class="form-group button-container">
                     <button type="submit" name="btnsig">Next</button>
                 </div>
-
             </form>
             <div class="signup-text">
                 <p>Already have an account? <a href="login.php" class="signup-link">Log In</a></p>
@@ -205,5 +210,12 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+    // Desactivar el alert después de 5 segundos
+    setTimeout(function() {
+        document.querySelector('.alert').style.display = 'none';
+    }, 5000);
+</script>
+
 </body>
 </html>

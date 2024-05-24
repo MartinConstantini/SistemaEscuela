@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,12 +13,19 @@
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    </head>
+</head>
 <body>
     <h1>Welcome, Log into your account</h1>
 
     <div class="main-content">
         <div class="container" style="width: 500px;">
+            <?php
+            // Mostrar la alerta si existe un mensaje de error
+            if (isset($_SESSION["error_message"])) {
+                echo '<div class="alert alert-warning" role="alert">' . $_SESSION["error_message"] . '</div>';
+                unset($_SESSION["error_message"]); // Limpiar el mensaje de error
+            }
+            ?>
             <form id="loginForm" method="POST" action="../backend/index.php">
                 <input type="hidden" name="accion" value="login">
 
@@ -27,19 +37,26 @@
                     <input type="text" name="email" id="email" placeholder="Enter the school email" required>
                 </div>
                 <div class="form-group">
-                    <input type="password" name="password" id="password" placeholder="pasword" required>
+                    <input type="password" name="password" id="password" placeholder="Password" required>
                 </div>
                 <div class="form-group button-container">
                     <button type="submit" name="btnsig">Next</button>
                 </div>
-
             </form>
             <div class="signup-text">
-                <p>Already have an account? <a href="Signup1.php" class="signup-link">Sing Up</a></p>
+                <p>Don't have an account? <a href="Signup1.php" class="signup-link">Sign Up</a></p>
             </div>
         </div>
     </div>
 
-    
+    <script>
+        // Mostrar la alerta de error después de 3 segundos
+        setTimeout(function(){
+            var alertElement = document.querySelector('.alert');
+            if (alertElement) {
+                alertElement.style.display = 'none';
+            }
+        }, 3000);
+    </script>
 </body>
 </html>

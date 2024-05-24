@@ -26,10 +26,11 @@ $nombre = $_SESSION['nombre'];
         rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="../css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="../css/teachers.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
 
@@ -43,8 +44,8 @@ $nombre = $_SESSION['nombre'];
         <!-- Sidebar -->
         <ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color: #152259;">
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-                <div class="sidebar-brand-icon">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../principal/index.php">
+                <div class="sidebar-brand-icon ">
                 <i class="fas fa-fw fa-school"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3">School Manager <?php echo $escuela; ?></div>
@@ -61,15 +62,15 @@ $nombre = $_SESSION['nombre'];
                 </a>
             </li>
 
-            <li class="nav-item rounded">
-                <a class="nav-link" href="teachers.php" style="color: white;">
+            <li class="nav-item rounded" style="background-color: #2D88D4;">
+                <a class="nav-link" href="" style="color: white;">
                 <i class="fas fa-fw fa-chalkboard-user"></i>
                 <span>Teachers</span>
                 </a>
             </li>
 
-            <li class="nav-item rounded" style="background-color: #2D88D4;">
-                <a class="nav-link" href="tablesAlumnos.php" style="color: white;">
+            <li class="nav-item rounded">
+                <a class="nav-link" href="alum.php" style="color: white;">            
                 <i class="fas fa-fw fa-user-pen"></i>
                 <span>Students/class</span>
                 </a>
@@ -213,7 +214,7 @@ $nombre = $_SESSION['nombre'];
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $nombre; ?></span>
                                 <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                    src="../img/undraw_profile.svg">
                                     
                             </a>
                             <!-- Dropdown - User Information -->
@@ -231,33 +232,57 @@ $nombre = $_SESSION['nombre'];
                 </nav>
                 <!-- End of Topbar -->
 
+<!-- Informacion -->                
+<div class="selected-info-container">
+    <div id="selectedInfo" class="card flex-item">
+        
+<button id="closeButton" class="btn"><i class="fas fa-times"></i></button>
+        <div class="card-body">
+            
+            <div class="column">
+            <img id="selectedImage" src="" class="rounded-circle" alt="Imagen del estudiante" width="50px">    
+            <strong><h5 id="selectedNombre" class="card-title"></h5></strong>
+                <p id="selectedCarrera" class="card-text"></p>
+                <div id="iconos">
+                                <i  class="fas fa-graduation-cap"></i>
+                                <i  class="fas fa-phone-volume"></i>
+                                <i  class="fas fa-envelope"></i>
+                </div>
+            </div>
+            <div class="column">
+                
+                <p>About:</p>
+                <p id="selectedAbout" class="card-text"></p>
+                <br>
+                <br>
+                <p id="selectedEdadGenero" class="card-text"></p>
+                <p id="selectedCantidad" class="card-text"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Fin informacion -->
+
                 <!-- Begin Page Content -->
                 <div class="container-fluid" >
                 <a href="#" class="btn btn-light" style="color: #2671B1;">
                 <span class="text">Export CSV</span>
                 </a>
 
-                <a href="#" class="btn btn-light" data-toggle="modal" data-target="#addAlum" style="background-color: #509CDB; color: white;">
-                <span class="text">Add student</span>
+                <a href="#" class="btn btn-light" data-toggle="modal" data-target="#addTeach" style="background-color: #509CDB; color: white;">
+                <span class="text">Add Teachers</span>
                 </a>
 
-                <!-- inicio -->
-                <div id="selectedInfo" class="card" style="width: 18rem; display: none;">
-                    <div class="card-body">
-                        <h5 id="selectedTitle" class="card-title"></h5>
-                        <p id="selectedContent" class="card-text"></p>
-                        <button id="closeButton" class="btn btn-primary">Cerrar</button>
-                    </div>
-                </div>
-                <!-- fin modal -->
 
                     <!-- DataTales Example -->
-                    <div class="card shadow mb-1" style="width: 650px;">
-                        <div class="card-header py-2">
-                            <h6 class="m-0 font-weight-bold text-primary">Students From <?php echo $escuela; ?></h6>
+                    <div class="card shadow mb-1 flex-item table-container" style="width: 100%;">
+                            <div class="card-header py-1">
+                            <h6 class="m-0 font-weight-bold text-primary">Teachers From <?php echo $escuela; ?></h6>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive table-striped">
+                            <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <?php
 // Conexión a la base de datos
@@ -269,7 +294,7 @@ $password = "root";
 try {
     $conexion = new PDO($servidor, $usuario, $password);
     // Preparar consulta SQL
-    $consulta = $conexion->prepare("SELECT `Ncontrol`, `Nombre`, `Apaterno`, `Amaterno`, `Password`, `Genero`, `Email`, `Inscripcion` FROM `estudiante` WHERE `Escuela` = :escuela "); // Cambiado a ':escuela' con minúscula
+    $consulta = $conexion->prepare("SELECT `Subject`, `Nombre`, `Email`, `Class`, `Genero`, `Id`, `Escuela`, `Imagen`, `About`, `Age` FROM `maestros` WHERE `Escuela` = :escuela "); // Cambiado a ':escuela' con minúscula
     $consulta->bindParam(':escuela', $escuela, PDO::PARAM_STR);
     // Ejecutar consulta
     $consulta->execute();
@@ -283,39 +308,39 @@ try {
 <!-- Ahora, vamos a imprimir los resultados en la tabla -->
 <thead>
     <tr>
-        <th>N Control</th>
-        <th>Nombre</th>
-        <th>Apellido P</th>
-        <th>Apellido M</th>
-        <th>Password</th>
-        <th>Género</th>
+        <th>Name</th>
+        <th>Subject</th>
+        <th>Class</th>
         <th>Email</th>
-        <th>Inscripción</th>
+        <th>Gender</th>
     </tr>
 </thead>
-
 <tbody>
-    <?php foreach ($resultados as $fila) : ?>
-        <tr onclick="showSelectedInfo('<?php echo $fila['Nombre']; ?>', '<?php echo $fila['Apaterno']; ?>')">
-            <td><?php echo $fila['Ncontrol']; ?></td>
-            <td><?php echo $fila['Nombre']; ?></td>
-            <td><?php echo $fila['Apaterno']; ?></td>
-            <td><?php echo $fila['Amaterno']; ?></td>
-            <td><?php echo $fila['Password']; ?></td>
-            <td><?php echo $fila['Genero']; ?></td>
+<?php foreach ($resultados as $fila) : ?>
+<tr onclick="showSelectedInfo('<?php echo $fila['Nombre']; ?>', '<?php echo base64_encode($fila['Imagen']); ?>', '<?php echo $fila['Subject']; ?>','<?php echo $fila['About']; ?>', '<?php echo $fila['Age']; ?>', '<?php echo $fila['Genero']; ?>', '<?php echo $fila['Class']; ?>')">
+        <td>
+        <?php
+             // Genera la etiqueta <img> con la imagen codificada en base64 si está presente
+            if (!empty($fila['Imagen'])) {
+            echo '<img class="img-profile rounded-circle" src="data:image/jpeg;base64,' . base64_encode($fila['Imagen']) . '"  alt="Imagen del estudiante" width="50">';
+            }
+            ?>
+            <?php echo $fila['Nombre']; ?>
+            </td>
+            <td><?php echo $fila['Subject']; ?></td>
+            <td><?php echo $fila['Class']; ?></td>
             <td><?php echo $fila['Email']; ?></td>
-            <td><?php echo $fila['Inscripcion']; ?></td>
+            <td><?php echo $fila['Genero']; ?></td>
         </tr>
     <?php endforeach; ?>
 </tbody>
 
-
-
                                 </table>
+                            </div>
+                        </div>
+                    </div>
 
-            </div>
-        </div>
-    </div>
+                </div>
                 <!-- /.container-fluid -->
 
             </div>
@@ -341,23 +366,23 @@ try {
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
-                            </div>
-                            <div class="modal-body">Estas por Salir</div>
-                        <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-primary" href="backend/logout.php">Salir</a>
+                </div>
+                <div class="modal-body">See you </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-danger" href="../backend/logout.php">Exit</a>
                 </div>
             </div>
         </div>
     </div>
 
 
-<!-- Modal para add alums-->
-<div class="modal" id="addAlum" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" >
+<!-- Modal para add Teachers-->
+<div class="modal" id="addTeach" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" >
   <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Students</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Add Teacher</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                             </button>
@@ -427,40 +452,66 @@ try {
 <!-- FIN Modal para add alums-->
 
 
-
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="../js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
-    
-    <script>
-        // Función para mostrar la información seleccionada en la tarjeta
-        function showSelectedInfo(title, content) {
-            // Mostrar el div de la tarjeta
-            document.getElementById('selectedInfo').style.display = 'block';
-            // Establecer el título y el contenido
-            document.getElementById('selectedTitle').innerText = title;
-            document.getElementById('selectedContent').innerText = content;
-        }
+    <script src="../js/demo/datatables-demo.js"></script>
 
-        // Función para cerrar la tarjeta al hacer clic en el botón de cerrar
-        document.getElementById('closeButton').addEventListener('click', function () {
-            // Ocultar el div de la tarjeta al hacer clic en el botón de cerrar
-            document.getElementById('selectedInfo').style.display = 'none';
-        });
-    </script>
+    <!-- scripts para infromacion -->
+    <script>
+function showSelectedInfo(nombre, imagen, subject, about, edad, genero, clase) {        
+    document.getElementById('selectedInfo').style.display = 'block';
+    if (imagen) {
+        document.getElementById('selectedImage').src = "data:image/jpeg;base64," + imagen;
+    } else {
+        document.getElementById('selectedImage').src = ""; // Si no hay imagen, deja el src vacío
+    }
+    document.getElementById('selectedNombre').innerText = "" + nombre;
+    document.getElementById('selectedCarrera').innerText = "" + subject;
+    document.getElementById('selectedAbout').innerText = "" + about;
+    document.getElementById('selectedEdadGenero').innerText = "Gender: " + genero + " Age: " + edad;
+    document.getElementById('selectedEdadGenero').style.paddingRight = "20px"; // Ajusta este valor según sea necesario
+
+    // Realiza una consulta para contar la cantidad de estudiantes que comparten la misma clase
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+                var cantidad = xhr.responseText;
+                document.getElementById('selectedCantidad').innerText = "Personas de la misma Clase: " + cantidad;
+            } else {
+                // Si hay algún error en la solicitud AJAX, muestra un mensaje de error
+                console.error('Error en la solicitud AJAX: ' + xhr.statusText);
+            }
+        }
+    };
+    xhr.open("GET", "../backend/obNumTeach.php?clase=" + clase, true);
+    xhr.send();
+}
+
+document.getElementById('closeButton').addEventListener('click', function () {
+    document.getElementById('selectedInfo').style.display = 'none';
+});
+</script>
+
+<!-- FIN scripts para infromacion -->
+
+
+
+
+
 
 </body>
 

@@ -23,8 +23,8 @@
             <input type="hidden" name="accion" value="login">
             
             <div class="input-group mb-4">
-                <select class="custom-select" id="StafN" name="StafN">
-                    <option selected>Staf Number</option>
+                <select class="custom-select" id="StafN" name="StafN" required>
+                    <option value="" selected disabled>Staf Number</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -35,8 +35,8 @@
             </div>
 
             <div class="input-group mb-4">
-                <select class="custom-select" id="AdressEs" name="AdressEs">
-                    <option selected>School address</option>
+                <select class="custom-select" id="AdressEs" name="AdressEs" required>
+                    <option selected disabled>School address</option>
                     <option value="Aguascalientes">Aguascalientes</option>
                     <option value="Baja California">Baja California</option>
                     <option value="Baja California Sur">Baja California Sur</option>

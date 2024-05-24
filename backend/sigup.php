@@ -5,7 +5,7 @@ session_start();
 if (isset($_SESSION['namead'], $_SESSION['namesc'], $_SESSION['email'], $_SESSION['password'], $_SESSION['StafN'], $_SESSION['AdressEs'])) {
     // Obtener los valores de las variables de sesión
     $email = $_SESSION['email'];
-    $password = $_SESSION['password'];
+    $password = password_hash($_SESSION['password'], PASSWORD_DEFAULT); // Se encripta la contraseña
     $namead = $_SESSION['namead'];
     $schoolAddress = $_SESSION['AdressEs'];
     $schoolName = $_SESSION['namesc'];
@@ -30,7 +30,7 @@ if (isset($_SESSION['namead'], $_SESSION['namesc'], $_SESSION['email'], $_SESSIO
 
     // Ejecutar la consulta
     if ($stmt->execute()) {
-        echo "Registro completado con éxito.";
+      //  echo "Registro completado con éxito.";
         header("Location: ../pagues/login.php");
         // Redirigir a otra página o mostrar un mensaje de éxito
     } else {

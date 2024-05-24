@@ -16,7 +16,7 @@ if (isset($_POST['StafN'], $_POST['AdressEs'])) {
     exit();
 } else {
     // Si se intenta acceder a este archivo directamente sin enviar el formulario, redireccionar al formulario
-    header("Location: ../pagues/signup2.php");
+    header("Location: ../pagues/signup3.php");
     exit();
 }
 ?>

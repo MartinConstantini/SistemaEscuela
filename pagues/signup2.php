@@ -29,7 +29,7 @@
 
             <div class="form-group">
                 <div class="input-group">
-                    <input type="password" id="password" name="password" class="password-input form-control" placeholder="Enter your password">
+                    <input type="password" id="password" name="password" class="password-input form-control" placeholder="Enter your password" require>
                     <div class="input-group-append">
                         <button type="button" class="password-icon btn btn-outline-secondary" style="border: none;" onclick="togglePasswordVisibility('password', 'togglePasswordIcon1')">
                             <i class="fas fa-eye" id="togglePasswordIcon1"></i>
@@ -44,7 +44,7 @@
 
             <div class="form-group">
                 <div class="input-group">
-                    <input type="password" id="password2" name="password2" class="password-input form-control" placeholder="Repeat your password">
+                    <input type="password" id="password2" name="password2" class="password-input form-control" placeholder="Repeat your password" require>
                     <div class="input-group-append">
                         <button type="button" class="password-icon btn btn-outline-secondary" style="border: none;" onclick="togglePasswordVisibility('password2', 'togglePasswordIcon2')">
                             <i class="fas fa-eye" id="togglePasswordIcon2"></i>

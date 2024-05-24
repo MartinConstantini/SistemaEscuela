@@ -26,10 +26,10 @@ $nombre = $_SESSION['nombre'];
         rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="../css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
 
@@ -43,8 +43,8 @@ $nombre = $_SESSION['nombre'];
         <!-- Sidebar -->
         <ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color: #152259;">
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../principal/index.php">
-                <div class="sidebar-brand-icon rotate-n-15">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+                <div class="sidebar-brand-icon">
                 <i class="fas fa-fw fa-school"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3">School Manager <?php echo $escuela; ?></div>
@@ -56,21 +56,21 @@ $nombre = $_SESSION['nombre'];
             <!-- Nav Item - Dashboard -->
 
             <li class="nav-item rounded" style="background-color: #2D88D4;">
-                <a class="nav-link" href="dashboar.php" style="color: white;">
+                <a class="nav-link" href="" style="color: white;">
                 <i class="fas fa-fw fa-house"></i>
                 <span>Dashboard</span>
                 </a>
             </li>
 
             <li class="nav-item rounded">
-                <a class="nav-link" href="teachers.php" style="color: white;">
+                <a class="nav-link" href="teacher.php" style="color: white;">
                 <i class="fas fa-fw fa-chalkboard-user"></i>
                 <span>Teachers</span>
                 </a>
             </li>
 
             <li class="nav-item rounded">
-                <a class="nav-link" href="tablesAlumnos.php" style="color: white;">
+                <a class="nav-link" href="alum.php" style="color: white;">
                 <i class="fas fa-fw fa-user-pen"></i>
                 <span>Students/class</span>
                 </a>
@@ -192,7 +192,7 @@ $nombre = $_SESSION['nombre'];
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $nombre; ?></span>
                                 <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                    src="../img/undraw_profile.svg">
                                     
                             </a>
                             <!-- Dropdown - User Information -->
@@ -248,31 +248,31 @@ $nombre = $_SESSION['nombre'];
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Estas por Salir</div>
+                <div class="modal-body">See you </div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-primary" href="backend/logout.php">Exit</a>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-danger" href="../backend/logout.php">Exit</a>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="../js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
+    <script src="../js/demo/datatables-demo.js"></script>
 
 </body>
 

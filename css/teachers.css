@@ -1,0 +1,62 @@
+.selected-info-container {
+    width: 90%;
+    max-width: 75%; /* Ajusta este valor según sea necesario */
+    margin: 0 auto;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999; /* Para asegurarse de que esté por encima de otros elementos */
+    max-height: 80vh; /* Limita la altura al 80% de la altura de la pantalla */
+    overflow-y: auto; /* Agrega desplazamiento vertical si el contenido excede la altura máxima */
+    margin-top: 100px; /* Espacio superior de 100px */
+}
+
+.column:nth-child(2) {
+    margin-top: 10%; /* Espacio de 50px entre la segunda columna y la parte superior */
+    text-align: justify;
+}
+
+#selectedInfo {
+    display: none;
+    width: 100%;
+}
+
+
+#closeButton {
+    position: absolute; /* Establece el posicionamiento absoluto para que el botón pueda ser posicionado en relación con el contenedor */
+    top: 0; /* Posiciona el botón en la parte superior */
+    right: 0; /* Posiciona el botón a la derecha */
+    margin: 10px; /* Agrega un margen para separar el botón del borde */
+}
+
+
+.card-body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.column {
+    width: calc(50% - 10px);
+    text-align: center; /* Centra el texto dentro de las columnas */
+
+    box-sizing: border-box;
+}
+
+.column > * {
+    margin-bottom: 15px;
+}
+
+#selectedImage {
+    width: 45%;
+    margin-bottom: 15px;
+}
+#iconos {
+    text-align: center; /* Centra los iconos horizontalmente */
+    margin-top: 5px; /* Agrega espacio arriba de los iconos */
+}
+
+#iconos > i {
+    margin: 0 10px; /* Agrega espacio horizontal entre los iconos */
+}
