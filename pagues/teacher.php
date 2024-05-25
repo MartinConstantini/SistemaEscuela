@@ -264,7 +264,27 @@ $nombre = $_SESSION['nombre'];
 
 
 <!-- Fin informacion -->
+                <!-- Alertas -->
+                <?php
+// Verifica si hay una alerta definida en la URL
+if (isset($_GET['alert'])) {
+    // Muestra la alerta de error si se recibe 'error' como parámetro
+    if ($_GET['alert'] === 'error') {
+        echo '<div class="alert alert-danger" role="alert" style="position: absolute; top: 20px; right: 20px; z-index: 9999;">';
+        echo 'Registration Error: Existing User or Duplicate Fields';
+        echo '</div>';
+    }
+    // Muestra la alerta de éxito si se recibe 'success' como parámetro
+    elseif ($_GET['alert'] === 'success') {
+        echo '<div class="alert alert-success" role="alert" style="position: absolute; top: 20px; right: 20px; z-index: 9999;">';
+        echo 'Registration Successful!';
+        echo '</div>';
+    }
+}
+?>
 
+
+                <!-- FIN Alertas -->
                 <!-- Begin Page Content -->
                 <div class="container-fluid" >
                 <a href="#" class="btn btn-light" style="color: #2671B1;">
@@ -378,78 +398,141 @@ try {
 
 
 <!-- Modal para add Teachers-->
-<div class="modal" id="addTeach" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" >
-  <div class="modal-dialog modal-xl" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Teacher</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                            </button>
-                            </div>
-                            <div class="modal-body">
-                            <!--FORM-->
-                            <form>
-  <div class="form-row">
-    <div class="form-group col-md-4">
-      <label for="nombre">Nombre:</label>
-      <input type="text" class="form-control" id="nombre">
+<div class="modal" id="addTeach" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Teacher</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <!-- Botones -->
+            <div class="button-container">
+                    <a href="#" class="btn add-another-btn">
+                    <span class="text" style="color: black;">Manually</span>
+        </a>
+
+        <a href="#" class="btn add-another-btn">
+        <span class="text" style="color: black;">Import CVS</span>
+        </a>
     </div>
-    <div class="form-group col-md-4">
-      <label for="apaterno">Apellido Paterno:</label>
-      <input type="text" class="form-control" id="apaterno">
+            <div class="modal-body">
+                
+            <!--FORM-->
+                
+    <form id="teacherForm" action="../backend/addteachr.php" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label for="nombre">Name</label>
+            <input type="text" class="form-control" name="nombre" id="nombre" autocomplete="off" required>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="class">Class</label>
+            <input type="text" class="form-control" name="class" id="class" placeholder="Class" autocomplete="off" required>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="genero">Gender</label>
+            <select class="form-control" name="genero" id="genero" autocomplete="off" required>
+            <option value="" selected disabled>Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="None">None</option>
+            </select>
+        </div>
     </div>
-    <div class="form-group col-md-4">
-      <label for="amaterno">Apellido Materno:</label>
-      <input type="text" class="form-control" id="amaterno">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" name="email" id="email" autocomplete="off" required>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="edad">Age</label>
+            <input type="number" class="form-control" name="edad" id="edad" min="1" max="99" autocomplete="off" required>
+        </div>
     </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="password">Contraseña:</label>
-      <input type="password" class="form-control" id="password">
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="about">About</label>
+            <textarea name="about" class="form-control" id="about" cols="30" rows="5" autocomplete="off" required></textarea>
+        </div>
     </div>
-    <div class="form-group col-md-6">
-      <label for="genero">Género:</label>
-      <select class="form-control" id="genero">
-        <option value="masculino">Masculino</option>
-        <option value="femenino">Femenino</option>
-        <option value="X">X</option>
-        <option value="X">Putito</option>
-      </select>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="imagen">Photo</label>
+            <input type="file" class="form-control" name="imagen" id="imagen" onchange="checkFileSize()" autocomplete="off" required>
+        </div>
+        <div class="form-group col-md-6">
+        <label for="genero">Subject</label>
+    <select class="form-control" name="subject" id="subject" autocomplete="off" required>
+    <option value="" selected disabled>Select One</option>
+    <option value="Mathematics">Mathematics</option>
+    <option value="Science">Science</option>
+    <option value="English">English</option>
+    <option value="History">History</option>
+    <option value="Computer Science">Computer Science</option>
+    <option value="Physical Education">Physical Education</option>
+    <option value="Art">Art</option>
+    <option value="Music">Music</option>
+    <option value="Geography">Geography</option>
+    <option value="Language Arts">Language Arts</option>
+    <option value="Social Studies">Social Studies</option>
+    <option value="Biology">Biology</option>
+    <option value="Chemistry">Chemistry</option>
+    <option value="Physics">Physics</option>
+    <option value="Economics">Economics</option>
+    <option value="Psychology">Psychology</option>
+    <option value="Sociology">Sociology</option>
+    <option value="Physical Science">Physical Science</option>
+    <option value="Health">Health</option>
+    <option value="Foreign Language">Foreign Language</option>
+    <option value="Literature">Literature</option>
+    <option value="Algebra">Algebra</option>
+    <option value="Geometry">Geometry</option>
+    <option value="Calculus">Calculus</option>
+    <option value="Statistics">Statistics</option>
+    <option value="Environmental Science">Environmental Science</option>
+    <option value="Government">Government</option>
+    <option value="Astronomy">Astronomy</option>
+    <option value="Anthropology">Anthropology</option>
+    <option value="Philosophy">Philosophy</option>
+    <option value="World History">World History</option>
+    <option value="US History">US History</option>
+    <option value="European History">European History</option>
+    <option value="Political Science">Political Science</option>
+    <option value="Engineering">Engineering</option>
+    <option value="Business">Business</option>
+    <option value="Marketing">Marketing</option>
+    <option value="Management">Management</option>
+    <option value="Finance">Finance</option>
+    <option value="Accounting">Accounting</option>
+    <option value="Medicine">Medicine</option>
+    <option value="Nursing">Nursing</option>
+    <option value="Dentistry">Dentistry</option>
+    <option value="Veterinary Science">Veterinary Science</option>
+    <option value="Law">Law</option>
+</select>
+        </div>
     </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-12">
-      <label for="email">Correo Electrónico:</label>
-      <input type="email" class="form-control" id="email">
+    <!-- Botones -->
+    <div class="button-container">
+        <a href="#" class="btn add-another-btn">
+            <span class="icon">
+                <i class="fas fa-plus"></i>
+            </span>
+            <span class="text">Add Another</span>
+        </a>
+        <input type="submit" value="Add Teacher" name="submit" class="btn btn-light submit-btn">
     </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inscripcion">Número de Inscripción:</label>
-      <input type="number" class="form-control" id="inscripcion" min="1" max="15">
-    </div>
-    <!-- Otros campos sobrantes -->
-  </div>
 </form>
 
-                            <!--FIN FORM-->
-                            </div>
-                        <div class="modal-footer">
-                    <button class="btn btn-light btn-icon-split" style="background-color: #FFFFFF; color: #4F4F4F;" type="button" data-dismiss="modal">
-                
-                    <span class="icon" style="background-color: #FFFFFF">
-                        <i class="fas fa-circle-plus"></i>
-                        </span>
-                        <span class="text">Add Another</span>
-                    </button>
-                    <button class="btn btn-light" style="background-color: #F1F1F1; color: #4F4F4F;" type="button" data-dismiss="modal">Add Student</button>
-                </div>
+                <!--FIN FORM-->
             </div>
         </div>
     </div>
+</div>
 <!-- FIN Modal para add alums-->
+
 
 
     <!-- Bootstrap core JavaScript-->
@@ -471,7 +554,7 @@ try {
 
     <!-- scripts para infromacion -->
     <script>
-function showSelectedInfo(nombre, imagen, subject, about, edad, genero, clase) {        
+    function showSelectedInfo(nombre, imagen, subject, about, edad, genero, clase) {        
     document.getElementById('selectedInfo').style.display = 'block';
     if (imagen) {
         document.getElementById('selectedImage').src = "data:image/jpeg;base64," + imagen;
@@ -508,6 +591,50 @@ document.getElementById('closeButton').addEventListener('click', function () {
 
 <!-- FIN scripts para infromacion -->
 
+<script>
+function checkFileSize() {
+    var fileInput = document.getElementById('imagen');
+    if (fileInput.files[0].size > 300000) { // Tamaño máximo en bytes (300 KB = 300000 bytes)
+        alert('El tamaño del archivo no puede ser mayor a 300 KB.');
+        fileInput.value = ''; // Limpiar el valor del input file
+        return false; // Detiene el envío del formulario
+    }
+    return true; // Continúa con el envío del formulario si el tamaño es válido
+}
+</script>
+
+<script>
+function validateForm() {
+    const form = document.getElementById('studentForm');
+    const inputs = form.querySelectorAll('input[required], select[required], textarea[required]');
+    
+    for (let input of inputs) {
+        if (!input.value.trim()) {
+            alert('Por favor complete todos los campos obligatorios.');
+            input.focus();
+            return false;
+        }
+    }
+    return true;
+}
+</script>
+
+<script>
+// Script para ocultar las alertas después de 5 segundos
+window.onload = function() {
+    setTimeout(function() {
+        var alerts = document.querySelectorAll('.alert');
+        alerts.forEach(function(alert) {
+            alert.style.display = 'none';
+        });
+
+        // Elimina el parámetro 'alert' de la URL
+        var url = new URL(window.location.href);
+        url.searchParams.delete('alert');
+        window.history.replaceState(null, null, url);
+    }, 5000); // 5000 milisegundos = 5 segundos
+};
+</script>
 
 
 

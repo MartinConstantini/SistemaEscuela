@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,17 +12,35 @@ session_start();
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
+<?php
+// Verifica si hay una alerta definida en la URL
+if (isset($_GET['alert'])) {
+    // Muestra la alerta de error si se recibe 'error' como parámetro
+    if ($_GET['alert'] === 'error') {
+        echo '<div class="alert alert-danger" role="alert" style="position: absolute; top: 20px; right: 20px; z-index: 9999;">';
+        echo 'Fail to sign up';
+        echo '</div>';
+    }
+    // Muestra la alerta de éxito si se recibe 'success' como parámetro
+    elseif ($_GET['alert'] === 'success') {
+        echo '<div class="alert alert-success" role="alert" style="position: absolute; top: 20px; right: 20px; z-index: 9999;">';
+        echo 'Registration Successful!';
+        echo 'LogIn NOW';
+        echo '</div>';
+    }
+    // Muestra la alerta de advertencia si se recibe 'errorLog' como parámetro
+    elseif ($_GET['alert'] === 'errorLog') {
+        echo '<div class="alert alert-warning" role="alert" style="position: absolute; top: 20px; right: 20px; z-index: 9999;">';
+        echo 'Emmail Or Password are Incorrer.  Try Again';
+        echo '</div>';
+    }
+}
+?>
+
     <h1>Welcome, Log into your account</h1>
 
     <div class="main-content">
         <div class="container" style="width: 500px;">
-            <?php
-            // Mostrar la alerta si existe un mensaje de error
-            if (isset($_SESSION["error_message"])) {
-                echo '<div class="alert alert-warning" role="alert">' . $_SESSION["error_message"] . '</div>';
-                unset($_SESSION["error_message"]); // Limpiar el mensaje de error
-            }
-            ?>
             <form id="loginForm" method="POST" action="../backend/index.php">
                 <input type="hidden" name="accion" value="login">
 
@@ -50,13 +65,20 @@ session_start();
     </div>
 
     <script>
-        // Mostrar la alerta de error después de 3 segundos
-        setTimeout(function(){
-            var alertElement = document.querySelector('.alert');
-            if (alertElement) {
-                alertElement.style.display = 'none';
-            }
-        }, 3000);
-    </script>
+// Script para ocultar las alertas después de 5 segundos
+window.onload = function() {
+    setTimeout(function() {
+        var alerts = document.querySelectorAll('.alert');
+        alerts.forEach(function(alert) {
+            alert.style.display = 'none';
+        });
+
+        // Elimina el parámetro 'alert' de la URL
+        var url = new URL(window.location.href);
+        url.searchParams.delete('alert');
+        window.history.replaceState(null, null, url);
+    }, 5000); // 5000 milisegundos = 5 segundos
+};
+</script>
 </body>
 </html>

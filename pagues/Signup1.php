@@ -149,7 +149,7 @@
             <?php
             session_start();
             if (isset($_SESSION["error"])) {
-                echo '<div class="alert alert-warning" role="alert">' . $_SESSION["error"] . '</div>';
+                echo '<div class="alert alert-warning" role="alert" style="position: absolute; top: 20px; right: 20px; z-index: 9999;">' . $_SESSION["error"] . '</div>';
                 unset($_SESSION["error"]);
             }
             ?>

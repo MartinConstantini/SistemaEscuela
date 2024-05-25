@@ -154,13 +154,13 @@ $nombre = $_SESSION['nombre'];
 if (isset($_GET['alert'])) {
     // Muestra la alerta de error si se recibe 'error' como parámetro
     if ($_GET['alert'] === 'error') {
-        echo '<div class="alert alert-danger" role="alert">';
+        echo '<div class="alert alert-danger" role="alert" style="position: absolute; top: 20px; right: 20px; z-index: 9999;">';
         echo 'Registration Error: Existing User or Duplicate Fields';
         echo '</div>';
     }
     // Muestra la alerta de éxito si se recibe 'success' como parámetro
     elseif ($_GET['alert'] === 'success') {
-        echo '<div class="alert alert-success" role="alert">';
+        echo '<div class="alert alert-success" role="alert" style="position: absolute; top: 20px; right: 20px; z-index: 9999;">';
         echo 'Registration Successful!';
         echo '</div>';
     }
@@ -304,6 +304,8 @@ if (isset($_GET['alert'])) {
         </div>
     </div>
 
+
+
     <!-- Modal para add alums-->
     <div class="modal" id="addAlum" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog modal-xl" role="document">
@@ -314,9 +316,9 @@ if (isset($_GET['alert'])) {
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-<!-- Botones -->
-<div class="button-container">
-<a href="#" class="btn btn-light add-another-btn">
+                <!-- Botones -->
+                    <div class="button-container">
+                    <a href="#" class="btn btn-light add-another-btn">
             <span class="text">Manually</span>
         </a>
 
@@ -336,7 +338,7 @@ if (isset($_GET['alert'])) {
     <input type="text" class="form-control" name="nombre" id="nombre" autocomplete="off" required>
 
     <select class="custom-select" name="genero" id="genero" autocomplete="off" required>
-        <option selected disabled>Gender</option>
+        <option value="" selected disabled>Gender</option>
         <option value="Male">Male</option>
         <option value="Female">Female</option>
         <option value="None">None</option>
@@ -350,7 +352,7 @@ if (isset($_GET['alert'])) {
     <input type="number" name="edad" id="edad" min="1" max="99" placeholder="Age" autocomplete="off" required>
 
     <select class="custom-select" name="carrera" id="carrera" autocomplete="off" required>
-        <option selected disabled>Carrier</option>
+    <option value="" selected disabled>Selec a carrier</option>
         <option value="Accounting">Accounting</option>
 <option value="Administration">Administration</option>
 <option value="Agriculture">Agriculture</option>
@@ -431,6 +433,8 @@ if (isset($_GET['alert'])) {
         </a>
         <input type="submit" value="Add student" name="submit" class="btn btn-light submit-btn">
     </div>
+<!-- Botones -->
+
 </form>
 
 <!--FIN FORM-->
@@ -465,7 +469,7 @@ if (isset($_GET['alert'])) {
     <script src="../js/demo/datatables-demo.js"></script>
 
     <script>
-function showSelectedInfo(ncontrol, image, nombre, carrera, genero, edad, about, clase) {
+        function showSelectedInfo(ncontrol, image, nombre, carrera, genero, edad, about, clase) {
     document.getElementById('selectedInfo').style.display = 'block';
     document.getElementById('selectedNControl').innerText = "" + ncontrol;
     if (image) {
@@ -528,16 +532,21 @@ function validateForm() {
 </script>
 
 <script>
-    // Script para ocultar las alertas después de 5 segundos
-    window.onload = function() {
-        setTimeout(function() {
-            var alerts = document.querySelectorAll('.alert');
-            alerts.forEach(function(alert) {
-                alert.style.display = 'none';
-            });
-        }, 5000); // 5000 milisegundos = 5 segundos
-    };
-    </script>
+// Script para ocultar las alertas después de 5 segundos
+window.onload = function() {
+    setTimeout(function() {
+        var alerts = document.querySelectorAll('.alert');
+        alerts.forEach(function(alert) {
+            alert.style.display = 'none';
+        });
+
+        // Elimina el parámetro 'alert' de la URL
+        var url = new URL(window.location.href);
+        url.searchParams.delete('alert');
+        window.history.replaceState(null, null, url);
+    }, 5000); // 5000 milisegundos = 5 segundos
+};
+</script>
 
 
 </body>

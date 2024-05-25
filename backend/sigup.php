@@ -31,7 +31,7 @@ if (isset($_SESSION['namead'], $_SESSION['namesc'], $_SESSION['email'], $_SESSIO
     // Ejecutar la consulta
     if ($stmt->execute()) {
       //  echo "Registro completado con éxito.";
-        header("Location: ../pagues/login.php");
+        header("Location: ../pagues/login.php?alert=success");
         // Redirigir a otra página o mostrar un mensaje de éxito
     } else {
         echo "Error: " . $stmt->error;
@@ -46,7 +46,7 @@ if (isset($_SESSION['namead'], $_SESSION['namesc'], $_SESSION['email'], $_SESSIO
     session_destroy();
 } else {
     // Redirigir a la primera página del formulario si faltan datos
-    header("Location: ../pagues/Signup1.php");
+    header("Location: ../pagues/Signup1.php?alert=error");
     exit();
 }
 ?>

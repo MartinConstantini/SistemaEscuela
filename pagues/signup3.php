@@ -36,7 +36,7 @@
 
             <div class="input-group mb-4">
                 <select class="custom-select" id="AdressEs" name="AdressEs" required>
-                    <option selected disabled>School address</option>
+                    <option value="" selected disabled>School address</option>
                     <option value="Aguascalientes">Aguascalientes</option>
                     <option value="Baja California">Baja California</option>
                     <option value="Baja California Sur">Baja California Sur</option>

@@ -54,8 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["accion"]) && $_POST["a
         exit();
     } else {
         // Si las credenciales son incorrectas, establece el mensaje de error
-        $_SESSION["error_message"] = "Incorrect email or password, try again";
-        header("Location: ../pagues/login.php");
+        header("Location: ../pagues/login.php?alert=errorLog");
         exit();
     }
 }

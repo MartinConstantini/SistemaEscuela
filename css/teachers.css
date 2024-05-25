@@ -22,14 +22,12 @@
     width: 100%;
 }
 
-
 #closeButton {
     position: absolute; /* Establece el posicionamiento absoluto para que el botón pueda ser posicionado en relación con el contenedor */
     top: 0; /* Posiciona el botón en la parte superior */
     right: 0; /* Posiciona el botón a la derecha */
     margin: 10px; /* Agrega un margen para separar el botón del borde */
 }
-
 
 .card-body {
     display: flex;
@@ -40,7 +38,6 @@
 .column {
     width: calc(50% - 10px);
     text-align: center; /* Centra el texto dentro de las columnas */
-
     box-sizing: border-box;
 }
 
@@ -52,6 +49,7 @@
     width: 45%;
     margin-bottom: 15px;
 }
+
 #iconos {
     text-align: center; /* Centra los iconos horizontalmente */
     margin-top: 5px; /* Agrega espacio arriba de los iconos */
@@ -59,4 +57,48 @@
 
 #iconos > i {
     margin: 0 10px; /* Agrega espacio horizontal entre los iconos */
+}
+
+/* Alinear los inputs dentro de form-group verticalmente */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem; /* Espacio entre los grupos de formularios */
+}
+
+.button-container {
+    width: 100%; /* Ocupa todo el ancho del formulario */
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Espacio horizontal entre los botones */
+    margin-top: 25px; /* Espacio vertical entre el input y los botones */
+}
+
+.add-another-btn {
+    background-color: transparent;
+    border: none;
+    color: #161616;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.add-another-btn .icon {
+    margin-right: 5px;
+}
+
+.submit-btn {
+    background-color: #F1F1F1;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.submit-btn:hover {
+    background-color: #e1e1e1; /* Color de fondo al pasar el cursor */
 }
