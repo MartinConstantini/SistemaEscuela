@@ -9,6 +9,6 @@ session_destroy();
 $escuela = "";
 
 // Redirige a la página de inicio o a cualquier otra página deseada
-header("Location: /escuela/pagues/login.php");
+header("Location: ../index.php");
 exit();
 ?>

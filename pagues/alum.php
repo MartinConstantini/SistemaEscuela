@@ -1,6 +1,6 @@
 <?php session_start();
 if (empty($_SESSION['escuela']) || empty($_SESSION['nombre'])) {
-    header("Location: /escuela/pagues/login.php");
+    header("Location: ../index.php");
     exit();
 }
 $escuela = $_SESSION['escuela'];

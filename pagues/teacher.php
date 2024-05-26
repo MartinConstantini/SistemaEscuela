@@ -1,7 +1,7 @@
 <?php session_start();
 if (empty($_SESSION['escuela']) || empty($_SESSION['nombre'])) {
     // Si está vacía, redirige a la página ../index.php
-    header("Location: /escuela/pagues/login.php");
+    header("Location: ../index.php");
     exit(); // Termina el script
 }
 // Si la variable de sesión $escuela no está vacía, asigna su valor a la variable $escuela

@@ -1,0 +1,694 @@
+/********** Template CSS **********/
+:root {
+    --primary: #06BBCC;
+    --light: #F0FBFC;
+    --dark: #FFFFFFFF;
+}
+
+.fw-medium {
+    font-weight: 600 !important;
+}
+
+.fw-semi-bold {
+    font-weight: 700 !important;
+}
+
+.back-to-top {
+    position: fixed;
+    display: none;
+    right: 45px;
+    bottom: 45px;
+    z-index: 99;
+}
+
+
+/*** Spinner ***/
+#spinner {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .5s ease-out, visibility 0s linear .5s;
+    z-index: 99999;
+}
+
+#spinner.show {
+    transition: opacity .5s ease-out, visibility 0s linear 0s;
+    visibility: visible;
+    opacity: 1;
+}
+
+
+/*** Button ***/
+.btnlogin {
+    width: Fixed (90px)px;
+    height: Hug (34px)px;
+    top: 44px;
+    left: 1198px;
+    border-radius: 40px 0px 0px 0px;
+    border: 0.2px 0px 0px 0px;
+    padding: 10px 14px 10px 14px;
+    gap: 10px;
+    color: #FFFFFF;
+}
+
+.btn {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    transition: .5s;
+    border-radius: 20px;
+}
+
+.btn.btn-primary,
+.btn.btn-secondary {
+    color: #FFFFFF;
+    background: #0A92DD;
+
+}
+
+.btn-square {
+    width: 38px;
+    height: 38px;
+}
+
+.btn-sm-square {
+    width: 32px;
+    height: 32px;
+}
+
+.btn-lg-square {
+    width: 48px;
+    height: 48px;
+}
+
+.btn-square,
+.btn-sm-square,
+.btn-lg-square {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: normal;
+    border-radius: 0px;
+}
+
+
+/*** Navbar ***/
+.navbar {
+    background-color: #100F57 !important; /* Cambio del color de fondo */
+}
+
+.navbar .dropdown-toggle::after {
+    border: none;
+    content: "\f107";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    vertical-align: middle;
+    margin-left: 8px;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    margin-right: 30px;
+    padding: 25px 0;
+    color: #FFFFFF;
+    font-size: 15px;
+    text-transform: uppercase;
+    outline: none;
+}
+
+.navbar-light .navbar-nav .nav-link:hover,
+.navbar-light .navbar-nav .nav-link.active {
+    color: var(--primary);
+}
+
+@media (max-width: 991.98px) {
+    .navbar-light .navbar-nav .nav-link  {
+        margin-right: 0;
+        padding: 10px 0;
+    }
+
+    .navbar-light .navbar-nav {
+        border-top: 1px solid #EEEEEE;
+    }
+}
+
+.navbar-light .navbar-brand,
+.navbar-light a.btn {
+    height: 75px;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: var(--dark);
+    font-weight: 500;
+}
+
+.navbar-light.sticky-top {
+    top: -100px;
+    transition: .5s;
+}
+
+@media (min-width: 992px) {
+    .navbar .nav-item .dropdown-menu {
+        display: block;
+        margin-top: 0;
+        opacity: 0;
+        visibility: hidden;
+        transition: .5s;
+    }
+
+    .navbar .dropdown-menu.fade-down {
+        top: 100%;
+        transform: rotateX(-75deg);
+        transform-origin: 0% 0%;
+    }
+
+    .navbar .nav-item:hover .dropdown-menu {
+        top: 100%;
+        transform: rotateX(0deg);
+        visibility: visible;
+        transition: .5s;
+        opacity: 1;
+    }
+}
+
+/*** Footer ***/
+.footer .btn.btn-social {
+    margin-right: 5px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--light);
+    font-weight: normal;
+    border: 1px solid #FFFFFF;
+    border-radius: 35px;
+    transition: .3s;
+}
+
+.footer .btn.btn-social:hover {
+    color: var(--primary);
+}
+
+.footer .btn.btn-link {
+    display: block;
+    margin-bottom: 5px;
+    padding: 0;
+    text-align: left;
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: normal;
+    text-transform: capitalize;
+    transition: .3s;
+}
+
+.footer .btn.btn-link::before {
+    position: relative;
+    content: "\f105";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    margin-right: 10px;
+}
+
+.footer .btn.btn-link:hover {
+    letter-spacing: 1px;
+    box-shadow: none;
+}
+
+.footer .copyright {
+    padding: 25px 0;
+    font-size: 15px;
+    border-top: 1px solid rgba(256, 256, 256, .1);
+}
+
+.footer .copyright a {
+    color: var(--light);
+}
+
+.footer .footer-menu a {
+    margin-right: 15px;
+    padding-right: 15px;
+    border-right: 1px solid rgba(255, 255, 255, .1);
+}
+
+.footer .footer-menu a:last-child {
+    margin-right: 0;
+    padding-right: 0;
+    border-right: none;
+}
+
+
+
+/* Luis */
+
+.btn-primary666 {
+    cursor: pointer;
+    border-radius: 35px; /* Hacer los bordes ovalados */
+    margin: 10px 0;
+    display: inline-block;
+    font-size: 14px; /* Reducir el tamaño de la fuente */
+    padding: 8px 16px; /* Reducir el relleno */
+    color:#D89925    ;
+    background: #100F57;
+    border-color: white; /* Cambiar el color del borde a rojo */
+}
+
+.container1 {
+    background-color: #100F57;
+    text-align: center;
+    padding: 20px;
+    color: #ffffff;
+}
+.btn-primary1, .btn-secondary1 {
+    padding: 10px 40px; /* Aumentar el padding horizontal */
+    text-transform: uppercase;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 25px; /* Hacer los bordes ovalados */
+    margin: 10px 0;
+    display: inline-block;
+}
+.btn-primary1 {
+    background-color: #100F57;
+    color: #D89925;
+    border: 2px solid #ffffff;
+}
+.btn-secondary1 {
+    background-color: #0A92DD;
+    color: #ffffff;
+    border: none;
+}
+h1 {
+    color: #ffffff;
+    margin: 10px 0;
+}
+p {
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+.image-container-right {
+    position: absolute;
+    top: 30%;
+    right: 300px;
+    transform: translateY(-50%);
+}
+.image-container-left {
+    position: absolute;
+    top: 50%;
+    left: 380px;
+    transform: translateY(-50%);
+}
+.image-container-left img, .image-container-right img {
+    max-width: 100px; /* Ajusta el tamaño según sea necesario */
+}
+
+.picview {
+    text-align: center;
+}
+
+.container2 {
+    text-align: center;
+    padding: 20px;
+}
+.h11 {
+    font-weight: bold;
+}
+img {
+    display: block;
+    margin: 0 auto;
+}
+
+
+.container2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.card {
+    width: 50%;
+    height: auto; /* Ajustar automáticamente la altura */
+    padding: 20px;
+    border: 1px solid white; /* Cambiado el color del borde a blanco */
+    margin: 0 10px;
+}
+.card img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+}
+.card-right {
+    width: 50%;
+    height: auto; /* Ajustar automáticamente la altura */
+    text-align: center;
+}
+.input-group {
+    margin-top: 20px;
+}
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.custom-box0{
+    text-align: left;
+}
+.custom-box {
+    background-color: #1777F7;
+    color: white;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+    text-align: left; /* Alinea todo el texto a la izquierda */
+}
+.ct1 {
+    color: #BDBDBD;
+}
+.ct2 {
+    color: #FFFFFF;
+}
+.ct3 {
+    color: #1E2024;
+}
+.ct4 {
+    color: #FFFFFF;
+}
+
+
+
+.container3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.card {
+    width: 50%;
+    height: auto; /* Ajustar automáticamente la altura */
+    padding: 20px;
+    border: 1px solid white; /* Cambiado el color del borde a blanco */
+    margin: 0 10px;
+}
+.card img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+}
+.card-right {
+    width: 50%;
+    height: auto; /* Ajustar automáticamente la altura */
+    text-align: center;
+}
+
+html, body {
+    overflow-x: hidden;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+
+
+
+.card-left {
+    width: 50%;
+    height: auto; /* Ajustar automáticamente la altura */
+    text-align: center;
+}
+.container4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    text-align: center;
+}
+.card1 {
+    width: 60%;
+    height: auto; /* Ajustar automáticamente la altura */
+    padding: 20px;
+    border: 1px solid white; /* Cambiado el color del borde a blanco */
+    margin: 20px 0;
+}
+.content {
+    margin: 20px 0;
+}
+.image-text {
+    display: flex;
+    align-items: center;
+}
+.image-text img {
+    margin-right: 20px;
+}
+.image-text .text {
+    text-align: left;
+}
+.image-text h1 {
+    margin: 0;
+}
+.image-text .small-text {
+    font-size: small;
+    margin-top: 5px;
+}
+
+
+.centered-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}
+.centered-content h1 {
+    color: #1777F7;
+}
+
+
+/* Tarjetas de precio */
+.bod {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+.price-cards-container {
+    display: flex;
+    gap: 20px;
+}
+.price-card {
+    background-color: #12134D;
+    color: white;
+    width: 300px;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    height: 475px; /* Aumento de la altura */
+}
+.price-card .header {
+    background-color: white;
+    color: #1777F7;
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    margin-left: -170px; /* Movimiento a la izquierda */
+    margin-top: 0px; /* Ajuste del margen superior */
+}
+.price-card .description {
+    font-size: 14px;
+    margin-bottom: 15px;
+    line-height: 1.5;
+    text-align: left; /* Alineación a la izquierda */
+    margin-left: 0px; /* Movimiento personalizado a la derecha */
+}
+.price-card .price {
+    font-size: 32px;
+    margin: 15px 0;
+    margin-left: -150px; /* Ajuste del margen izquierdo */
+}
+.price-card .price span {
+    font-size: 16px;
+    color: #B0B3E6;
+}
+.price-card .features {
+    text-align: left;
+    margin: 20px 0;
+    padding: 0;
+    list-style: none;
+}
+.price-card .features li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.price-card .features li img {
+    margin-right: 10px;
+}
+.price-card .button {
+    background-color: #1777F7;
+    color: white;
+    padding: 10px 85px; /* Ajuste del padding horizontal */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 15px; /* Margen superior añadido */
+}
+/* Tarjetas de precio */
+
+/* Cara del chaval */
+.bod1 {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between; /* Distribuye espacio entre los elementos del contenedor */
+    align-items: center; /* Alinea los elementos verticalmente al centro */
+    width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.header-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.header-text h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #000;
+}
+
+.span-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinea los spans a la izquierda dentro de su contenedor */
+    margin-left: auto; /* Empuja el contenedor a la derecha */
+    color: #667085;
+    ;
+}
+
+.span-container span {
+    font-size: 14px;
+}
+
+.content1 {
+    width: 100vw; /* Asegura que ocupe todo el ancho de la ventana */
+    height: calc(100vh - 60px); /* Ajuste para el espacio restante en la pantalla */
+    background-color: #0B0641;
+    display: flex; /* Habilita el modelo de caja flexible */
+    justify-content: center; /* Centra el contenido hijo horizontalmente */
+    align-items: center; /* Centra el contenido hijo verticalmente */
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.left, .right {
+    flex: 1; /* Hace que cada lado ocupe un espacio igual */
+    display: flex; /* Habilita el modelo de caja flexible dentro de los lados izquierdo y derecho */
+    justify-content: center; /* Centra el contenido hijo horizontalmente dentro de los lados */
+    align-items: center; /* Centra el contenido hijo verticalmente dentro de los lados */
+}
+
+.left img {
+    max-width: 100%; /* Limita el ancho máximo de la imagen al 100% del contenedor */
+    max-height: 100%; /* Limita la altura máxima de la imagen al 100% del contenedor */
+}
+
+.right .info-box {
+    color: #1777F7;
+    text-align: center;
+    width: 80%; /* Define el ancho del cuadro de información */
+    box-sizing: border-box;
+}
+
+.right .header-box {
+    background-color: white;
+    color: #1777F7;
+    width: 100px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 10px;
+    height: 45px; /* Aumento de la altura */
+    margin-top: 10px; /* Margen superior ajustado */
+}
+
+.right .info-box p {
+    margin: 10px 0;
+    color: white;
+}
+
+.right .info-box .price {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    text-align: left;
+}
+
+.choose-button {
+    background-color: #1777F7;
+    color: white;
+    border: none;
+    padding: 10px 150px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 100px; /* Añade margen superior para mover el botón hacia abajo */
+}
+
+.button-container {
+    text-align: center; /* Centra horizontalmente el contenido */
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+}
+
+.description{
+    color: white;
+    text-align: left;
+}
+
+.description2{
+    color: gray;
+    text-align: left;
+}
+/* Cara del chaval */
+
+/* input + button */
+.custom-search {
+    position: relative;
+    width: 300px;
+  }
+  .custom-search-input {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 100px;
+    padding: 10px 100px 10px 20px; 
+    line-height: 1;
+    box-sizing: border-box;
+    outline: none;
+  }
+  .custom-search-botton {
+    position: absolute;
+    right: 3px; 
+    top: 3px;
+    bottom: 3px;
+    border: 0;
+    background: #0A92DD;
+    color: #fff;
+    outline: none;
+    margin: 0;
+    padding: 0 10px;
+    border-radius: 100px;
+    z-index: 2;
+  }
+  /* input + button */
