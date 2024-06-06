@@ -1,6 +1,6 @@
 <?php session_start();
 if (empty($_SESSION['escuela']) || empty($_SESSION['nombre'])) {
-    header("Location: ../index.php");
+    header("Location: /escuela/pagues/login.php");
     exit();
 }
 $escuela = $_SESSION['escuela'];
@@ -24,13 +24,27 @@ $nombre = $_SESSION['nombre'];
         rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="../css/alumta.css" rel="stylesheet">
-
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
-    <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <style>
+        .flex-container {
+            display: flex;
+            justify-content: space-between;
+        }
+        .flex-item {
+            margin: 10px;
+        }
+        #selectedInfo {
+            order: 2;
+        }
+        .table-container {
+            order: 1;
+        }
+    </style>
 
 </head>
 
@@ -59,38 +73,19 @@ $nombre = $_SESSION['nombre'];
                     <span>Dashboard</span>
                 </a>
             </li>
-            
+
             <li class="nav-item rounded">
-                <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapseUtilities" style="color: white;">
+                <a class="nav-link" href="teachers.php" style="color: white;">
                     <i class="fas fa-fw fa-chalkboard-user"></i>
                     <span>Teachers</span>
                 </a>
-                <!-- HTML -->
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-                <div class="py-2 collapse-inner" style="width: 100%; color: white;">
-                <a class="collapse-item" href="teacher.php" style="color: white;"> > All Teachers</a>
-                <a class="collapse-item" href="" style="color: white;"> > Admision Form</a>
-                <a class="collapse-item" href="" style="color: white;"> > Teacher Promotion</a>
-                <a class="collapse-item" href="" style="color: white;"> > Class</a>
-                </div>
-            </div>
             </li>
 
             <li class="nav-item rounded" style="background-color: #2D88D4;">
-                <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapseUtilities" style="color: white;">
+                <a class="nav-link" href="tablesAlumnos.php" style="color: white;">
                     <i class="fas fa-fw fa-user-pen"></i>
                     <span>Students/class</span>
                 </a>
-                <!-- HTML -->
-<div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-    <div class="py-2 collapse-inner" style="background-color: #2D88D4; width: 100%; color: white;">
-        <a class="collapse-item" href="" style="color: white;"> > All students</a>
-        <a class="collapse-item" href="" style="color: white;"> > Admision Form</a>
-        <a class="collapse-item" href="" style="color: white;"> > Student Promotion</a>
-        <a class="collapse-item" href="" style="color: white;"> > Class</a>
-    </div>
-            </div>
-
             </li>
 
             <li class="nav-item rounded">
@@ -149,7 +144,7 @@ $nombre = $_SESSION['nombre'];
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $nombre; ?></span>
-                                <img class="img-profile rounded-circle" src="../img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -166,32 +161,6 @@ $nombre = $_SESSION['nombre'];
                 </nav>
                 <!-- End of Topbar -->
 
-
-                <!-- Alertas -->
-<?php
-// Verifica si hay una alerta definida en la URL
-if (isset($_GET['alert'])) {
-    // Muestra la alerta de error si se recibe 'error' como parámetro
-    if ($_GET['alert'] === 'error') {
-        echo '<div class="alert alert-danger" role="alert" style="position: absolute; top: 20px; right: 20px; z-index: 9999;">';
-        echo 'Registration Error: Existing User or Duplicate Fields';
-        echo '</div>';
-    }
-    // Muestra la alerta de éxito si se recibe 'success' como parámetro
-    elseif ($_GET['alert'] === 'success') {
-        echo '<div class="alert alert-success" role="alert" style="position: absolute; top: 20px; right: 20px; z-index: 9999;">';
-        echo 'Registration Successful!';
-        echo '</div>';
-    }
-}
-?>
-
-
-                <!-- FIN Alertas -->
-
-
-
-
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <a href="#" class="btn btn-light" style="color: #2671B1;">
@@ -204,7 +173,7 @@ if (isset($_GET['alert'])) {
 
                     <div class="flex-container">
                         <!-- DataTales Example -->
-                        <div class="card shadow mb-1 flex-item table-container" style="width: 75%;">
+                        <div class="card shadow mb-1 flex-item table-container" style="width: 900px;">
                             <div class="card-header py-2">
                                 <h6 class="m-0 font-weight-bold text-primary">Students From <?php echo $escuela; ?></h6>
                             </div>
@@ -238,12 +207,12 @@ if (isset($_GET['alert'])) {
                                         </thead>
                                         <tbody>
                                             <?php foreach ($resultados as $fila) : ?>
-                                                <tr onclick="showSelectedInfo('<?php echo $fila['Ncontrol']; ?>', '<?php echo base64_encode($fila['Imagen']); ?>', '<?php echo $fila['Nombre']; ?>','<?php echo $fila['Carrera']; ?>', '<?php echo $fila['Genero']; ?>', '<?php echo $fila['Edad']; ?>', '<?php echo $fila['About']; ?>', '<?php echo $fila['Class']; ?>')">
+                                                <tr onclick="showSelectedInfo('<?php echo $fila['Ncontrol']; ?>', '<?php echo base64_encode($fila['Imagen']); ?>', '<?php echo $fila['Nombre']; ?>','<?php echo $fila['Carrera']; ?>', '<?php echo $fila['Genero']; ?>', '<?php echo $fila['Edad']; ?>', '<?php echo $fila['About']; ?>')">
                                                     <td>
                                                         <?php
                                                         // Genera la etiqueta <img> con la imagen codificada en base64 si está presente
                                                         if (!empty($fila['Imagen'])) {
-                                                            echo '<img class="img-profile rounded-circle" src="data:image/jpeg;base64,' . base64_encode($fila['Imagen']) . '"  alt="Imagen del estudiante" width="50">';
+                                                            echo '<img src="data:image/jpeg;base64,' . base64_encode($fila['Imagen']) . '" class="rounded-circle" alt="Imagen del estudiante" width="50">';
                                                         }
                                                         ?>
                                                         <!-- Muestra siempre el nombre del estudiante -->
@@ -264,15 +233,15 @@ if (isset($_GET['alert'])) {
                         <!-- inicio tarjeta de informacion-->
                         <div id="selectedInfo" class="card flex-item" style="width: 18rem; display: none;">
                         <div class="card-body">
-                        <button id="closeButton" class="btn"><i class="fas fa-x"></i></button>
+                        <button id="closeButton" class="btn btn-primary">Cerrar</button>
                             <h5 id="selectedNControl" class="card-title"></h5>
-                            <img id="selectedImage" src="" class="rounded-circle" alt="Imagen del estudiante" width="200">
+                            <img id="selectedImage" src="" class="rounded-circle" alt="Imagen del estudiante" width="100">
                             <p id="selectedNombre" class="card-text"></p>
                             <p id="selectedCarrera" class="card-text"></p>
-                            <div id="iconos">
-                                <i  class="fas fa-graduation-cap"></i>
-                                <i  class="fas fa-phone-volume"></i>
-                                <i  class="fas fa-envelope"></i>
+                            <div>
+                                <i class="fas fa-graduation-cap"></i>
+                                <i class="fas fa-phone-volume"></i>
+                                <i class="fas fa-icon-3"></i>
                             </div>
                             <br>
                             <p>About:</p>
@@ -280,7 +249,6 @@ if (isset($_GET['alert'])) {
                             <p id="selectedEdad" class="card-text"></p>
                             <p id="selectedEdadGenero" class="card-text"></p>
                             <p id="selectedCantidad" class="card-text"></p>
-
                         </div>
                     </div>
 
@@ -304,8 +272,7 @@ if (isset($_GET['alert'])) {
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -314,16 +281,14 @@ if (isset($_GET['alert'])) {
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">See you </div>
+                <div class="modal-body">Estas por Salir</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-danger" href="../backend/logout.php">Exit</a>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <a class="btn btn-primary" href="backend/logout.php">Salir</a>
                 </div>
             </div>
         </div>
     </div>
-
-
 
     <!-- Modal para add alums-->
     <div class="modal" id="addAlum" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
@@ -335,188 +300,103 @@ if (isset($_GET['alert'])) {
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <!-- Botones -->
-                    <div class="button-container">
-                    <a href="#" class="btn btn-light add-another-btn">
-            <span class="text">Manually</span>
-        </a>
-
-        <a href="#" class="btn btn-light add-another-btn">
-            <span class="text">Inport CVS</span>
-        </a>
-    </div>
-
-
                 <div class="modal-body">
-     
-
-
-                     <!--FORM-->
-                     <form id="studentForm" action="../backend/addstudens.php" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
-    <label for="nombre">Nombre:</label>
-    <input type="text" class="form-control" name="nombre" id="nombre" autocomplete="off" required>
-
-    <select class="custom-select" name="genero" id="genero" autocomplete="off" required>
-        <option value="" selected disabled>Gender</option>
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-        <option value="None">None</option>
-    </select>
-
-    <br>
-    <label for="email">Email:</label>
-    <input type="email" name="email" id="email" autocomplete="off" required>
-
-    <label for="edad">Age:</label>
-    <input type="number" name="edad" id="edad" min="1" max="99" placeholder="Age" autocomplete="off" required>
-
-    <select class="custom-select" name="carrera" id="carrera" autocomplete="off" required>
-    <option value="" selected disabled>Selec a carrier</option>
-        <option value="Accounting">Accounting</option>
-<option value="Administration">Administration</option>
-<option value="Agriculture">Agriculture</option>
-<option value="Architecture">Architecture</option>
-<option value="Biology">Biology</option>
-<option value="Business Administration">Business Administration</option>
-<option value="Chemistry">Chemistry</option>
-<option value="Civil Engineering">Civil Engineering</option>
-<option value="Communication">Communication</option>
-<option value="Computer Science">Computer Science</option>
-<option value="Criminal Justice">Criminal Justice</option>
-<option value="Dentistry">Dentistry</option>
-<option value="Economics">Economics</option>
-<option value="Education">Education</option>
-<option value="Electrical Engineering">Electrical Engineering</option>
-<option value="Environmental Science">Environmental Science</option>
-<option value="Finance">Finance</option>
-<option value="Geology">Geology</option>
-<option value="History">History</option>
-<option value="Human Resources">Human Resources</option>
-<option value="Industrial Engineering">Industrial Engineering</option>
-<option value="International Relations">International Relations</option>
-<option value="Law">Law</option>
-<option value="Linguistics">Linguistics</option>
-<option value="Management">Management</option>
-<option value="Marketing">Marketing</option>
-<option value="Mathematics">Mathematics</option>
-<option value="Mechanical Engineering">Mechanical Engineering</option>
-<option value="Medicine">Medicine</option>
-<option value="Nursing">Nursing</option>
-<option value="Pharmacy">Pharmacy</option>
-<option value="Philosophy">Philosophy</option>
-<option value="Physics">Physics</option>
-<option value="Political Science">Political Science</option>
-<option value="Psychology">Psychology</option>
-<option value="Public Administration">Public Administration</option>
-<option value="Public Health">Public Health</option>
-<option value="Sociology">Sociology</option>
-<option value="Software Engineering">Software Engineering</option>
-<option value="Statistics">Statistics</option>
-<option value="Supply Chain Management">Supply Chain Management</option>
-<option value="Telecommunications">Telecommunications</option>
-<option value="Theater">Theater</option>
-<option value="Tourism">Tourism</option>
-<option value="Veterinary Medicine">Veterinary Medicine</option>
-<option value="Visual Arts">Visual Arts</option>
-        <option value="Other">Other</option>
-    </select>
-
-    <br>
-    <label for="about">About:</label>
-    <textarea name="about" id="about" cols="30" rows="5" autocomplete="off" required></textarea>
-    <br>
-    <div class="file-upload">
-        <input type="file" name="imagen" id="imagen" onchange="checkFileSize()" class="file-input" autocomplete="off" required>
-        <label for="imagen" class="file-label">
-            <i class="fas fa-cloud-upload-alt"></i> Choose Photo Max 300KB
-        </label>
-    </div>
-
-    <br>
-
-    <input type="text" name="class" id="class" placeholder="Class" autocomplete="off" required>
-    <br>
-    <br>
-
-    <!-- Espacio independiente -->
-    <div class="form-container">
-    </div>
-
-    <!-- Botones -->
-    <div class="button-container">
-        <a href="#" class="btn btn-light add-another-btn">
-            <span class="icon text-gray-600">
-                <i class="fas fa-plus"></i>
-            </span>
-            <span class="text">Add another</span>
-        </a>
-        <input type="submit" value="Add student" name="submit" class="btn btn-light submit-btn">
-    </div>
-<!-- Botones -->
-
-</form>
-
-<!--FIN FORM-->
-
-
+                    <!--FORM-->
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="nombre">Nombre:</label>
+                                <input type="text" class="form-control" id="nombre">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="apaterno">Apellido Paterno:</label>
+                                <input type="text" class="form-control" id="apaterno">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="amaterno">Apellido Materno:</label>
+                                <input type="text" class="form-control" id="amaterno">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="password">Contraseña:</label>
+                                <input type="password" class="form-control" id="password">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="genero">Género:</label>
+                                <select class="form-control" id="genero">
+                                    <option value="masculino">Masculino</option>
+                                    <option value="femenino">Femenino</option>
+                                    <option value="X">X</option>
+                                    <option value="X">Putito</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="email">Correo Electrónico:</label>
+                                <input type="email" class="form-control" id="email">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inscripcion">Número de Inscripción:</label>
+                                <input type="number" class="form-control" id="inscripcion" min="1" max="15">
+                            </div>
+                        </div>
+                    </form>
+                    <!--FIN FORM-->
                 </div>
-                
+                <div class="modal-footer">
+                    <button class="btn btn-light btn-icon-split" style="background-color: #FFFFFF; color: #4F4F4F;" type="button" data-dismiss="modal">
+                        <span class="icon" style="background-color: #FFFFFF">
+                            <i class="fas fa-circle-plus"></i>
+                        </span>
+                        <span class="text">Add Another</span>
+                    </button>
+                    <button class="btn btn-light" style="background-color: #F1F1F1; color: #4F4F4F;" type="button" data-dismiss="modal">Add Student</button>
+                </div>
             </div>
         </div>
     </div>
     <!-- FIN Modal para add alums-->
 
-
-
-
-
     <!-- Bootstrap core JavaScript-->
-    <script src="../vendor/jquery/jquery.min.js"></script>
-    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="../js/sb-admin-2.min.js"></script>
+    <script src="js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="../js/demo/datatables-demo.js"></script>
+    <script src="js/demo/datatables-demo.js"></script>
 
     <script>
-        function showSelectedInfo(ncontrol, image, nombre, carrera, genero, edad, about, clase) {
+function showSelectedInfo(ncontrol, image, nombre, carrera, genero, edad, about) {
     document.getElementById('selectedInfo').style.display = 'block';
-    document.getElementById('selectedNControl').innerText = "" + ncontrol;
+    document.getElementById('selectedNControl').innerText = "Número de control: " + ncontrol;
     if (image) {
         document.getElementById('selectedImage').src = "data:image/jpeg;base64," + image;
     } else {
         document.getElementById('selectedImage').src = ""; // Si no hay imagen, deja el src vacío
     }
-    document.getElementById('selectedNombre').innerText = "" + nombre;
-    document.getElementById('selectedCarrera').innerText = "" + carrera;
+    document.getElementById('selectedNombre').innerText = "Nombre: " + nombre;
+    document.getElementById('selectedCarrera').innerText = "Carrera: " + carrera;
+    // Supongo que los iconos, about, edad y género ya están en tu base de datos
+    // Si no, deberías obtenerlos de algún otro lugar y agregarlos aquí
+    // Por ahora, solo los dejaré como texto estático
     document.getElementById('selectedAbout').innerText = ""+ about;
-    document.getElementById('selectedEdad').innerText = "Age: "+ edad;
-    document.getElementById('selectedEdadGenero').innerText = "Gender: " + genero;
-    
-    // Realiza una consulta para contar la cantidad de estudiantes que comparten la misma clase
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4) {
-            if (xhr.status == 200) {
-                var cantidad = xhr.responseText;
-                document.getElementById('selectedCantidad').innerText = "People From the same Class: " + cantidad;
-            } else {
-                // Si hay algún error en la solicitud AJAX, muestra un mensaje de error
-                console.error('Error en la solicitud AJAX: ' + xhr.statusText);
-            }
-        }
-    };
-    xhr.open("GET", "../backend/obNumAlum.php?clase=" + clase, true);
-    xhr.send();
+    document.getElementById('selectedEdad').innerText = "Edad: "+ edad;
+    document.getElementById('selectedEdadGenero').innerText = "Género: " + genero;
+    // La cantidad de personas similares no está en la consulta, así que la dejaré vacía por ahora
+    document.getElementById('selectedCantidad').innerText = "Cantidad de personas similares: ";
 }
 
 document.getElementById('closeButton').addEventListener('click', function () {
@@ -524,48 +404,6 @@ document.getElementById('closeButton').addEventListener('click', function () {
 });
 </script>
 
-<script>
-function checkFileSize() {
-    var fileInput = document.getElementById('imagen');
-    if (fileInput.files[0].size > 300000) { // Tamaño máximo en bytes (100 KB = 102400 bytes)
-        alert('El tamaño del archivo no puede ser mayor a 100 KB.');
-        fileInput.value = ''; // Limpiar el valor del input file
-    }
-}
-</script>
-
-<script>
-function validateForm() {
-    const form = document.getElementById('studentForm');
-    const inputs = form.querySelectorAll('input[required], select[required], textarea[required]');
-    
-    for (let input of inputs) {
-        if (!input.value.trim()) {
-            alert('Please fill out all required fields.');
-            input.focus();
-            return false;
-        }
-    }
-    return true;
-}
-</script>
-
-<script>
-// Script para ocultar las alertas después de 5 segundos
-window.onload = function() {
-    setTimeout(function() {
-        var alerts = document.querySelectorAll('.alert');
-        alerts.forEach(function(alert) {
-            alert.style.display = 'none';
-        });
-
-        // Elimina el parámetro 'alert' de la URL
-        var url = new URL(window.location.href);
-        url.searchParams.delete('alert');
-        window.history.replaceState(null, null, url);
-    }, 5000); // 5000 milisegundos = 5 segundos
-};
-</script>
 
 
 </body>

@@ -1,7 +1,7 @@
 <?php session_start();
 if (empty($_SESSION['escuela']) || empty($_SESSION['nombre'])) {
     // Si está vacía, redirige a la página ../index.php
-    header("Location: ../index.php");
+    header("Location: /escuela/pagues/login.php");
     exit(); // Termina el script
 }
 // Si la variable de sesión $escuela no está vacía, asigna su valor a la variable $escuela
@@ -26,10 +26,10 @@ $nombre = $_SESSION['nombre'];
         rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
-    <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
 
@@ -43,8 +43,8 @@ $nombre = $_SESSION['nombre'];
         <!-- Sidebar -->
         <ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color: #152259;">
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-                <div class="sidebar-brand-icon">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../principal/index.php">
+                <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-fw fa-school"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3">School Manager <?php echo $escuela; ?></div>
@@ -54,44 +54,25 @@ $nombre = $_SESSION['nombre'];
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-
-            <li class="nav-item rounded" style="background-color: #2D88D4;">
-                <a class="nav-link" href="" style="color: white;">
+            <li class="nav-item rounded">
+                <a class="nav-link" href="dashboar.php" style="color: white;">
                 <i class="fas fa-fw fa-house"></i>
                 <span>Dashboard</span>
                 </a>
             </li>
 
-            <li class="nav-item rounded">
-                <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapseUtilities" style="color: white;">
-                    <i class="fas fa-fw fa-chalkboard-user"></i>
-                    <span>Teachers</span>
+            <li class="nav-item rounded" style="background-color: #2D88D4;">
+                <a class="nav-link" href="teachers.php" style="color: white;">
+                <i class="fas fa-fw fa-chalkboard-user"></i>
+                <span>Teachers</span>
                 </a>
-                <!-- HTML -->
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-                <div class="py-2 collapse-inner" style="width: 100%; color: white;">
-                <a class="collapse-item" href="teacher.php" style="color: white;"> > All Teachers</a>
-                <a class="collapse-item" href="" style="color: white;"> > Admision Form</a>
-                <a class="collapse-item" href="" style="color: white;"> > Teacher Promotion</a>
-                <a class="collapse-item" href="" style="color: white;"> > Class</a>
-                </div>
-            </div>
             </li>
 
             <li class="nav-item rounded">
-                <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapseUtilities" style="color: white;">
-                    <i class="fas fa-fw fa-user-pen"></i>
-                    <span>Students/class</span>
+                <a class="nav-link" href="tablesAlumnos.php" style="color: white;">            
+                <i class="fas fa-fw fa-user-pen"></i>
+                <span>Students/class</span>
                 </a>
-                <!-- HTML -->
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-                <div class="py-2 collapse-inner" style="width: 100%; color: white;">
-                <a class="collapse-item" href="alum.php" style="color: white;"> > All students</a>
-                <a class="collapse-item" href="" style="color: white;"> > Admision Form</a>
-                <a class="collapse-item" href="" style="color: white;"> > Student Promotion</a>
-                <a class="collapse-item" href="" style="color: white;"> > Class</a>
-                </div>
-            </div>
             </li>
 
             <li class="nav-item rounded">
@@ -114,7 +95,6 @@ $nombre = $_SESSION['nombre'];
                 <span>Exams</span>
                 </a>
             </li>
-            
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -148,8 +128,31 @@ $nombre = $_SESSION['nombre'];
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        
-                        <p class="mb-4">Learn how to launch faster watch our webinar fot tips from our esperts and get a limited time offer.</p>
+
+                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small"
+                                            placeholder="Search for..." aria-label="Search"
+                                            aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
@@ -210,7 +213,7 @@ $nombre = $_SESSION['nombre'];
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $nombre; ?></span>
                                 <img class="img-profile rounded-circle"
-                                    src="../img/undraw_profile.svg">
+                                    src="img/undraw_profile.svg">
                                     
                             </a>
                             <!-- Dropdown - User Information -->
@@ -229,13 +232,69 @@ $nombre = $_SESSION['nombre'];
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
+                <div class="container-fluid" >
+                <a href="#" class="btn btn-light" style="color: #2671B1;">
+                <span class="text">Export CSV</span>
+                </a>
+
+                <a href="#" class="btn btn-light" data-toggle="modal" data-target="#addTeach" style="background-color: #509CDB; color: white;">
+                <span class="text">Add Teachers</span>
+                </a>
+
+
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Students From <?php echo $escuela; ?></h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Teachers From <?php echo $escuela; ?></h6>
                         </div>
                         <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <?php
+// Conexión a la base de datos
+$servidor = "mysql:host=localhost:8889;dbname=escuela;charset=utf8";
+$usuario = "root";
+$password = "root";
+
+
+try {
+    $conexion = new PDO($servidor, $usuario, $password);
+    // Preparar consulta SQL
+    $consulta = $conexion->prepare("SELECT `Nombre`, `Subject`, `Class`, `Email`, `Genero` FROM `maestros` WHERE `Escuela` = :escuela "); // Cambiado a ':escuela' con minúscula
+    $consulta->bindParam(':escuela', $escuela, PDO::PARAM_STR);
+    // Ejecutar consulta
+    $consulta->execute();
+    // Obtener resultados
+    $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    echo "Error al conectar a la base de datos: " . $e->getMessage();
+}
+?>
+
+<!-- Ahora, vamos a imprimir los resultados en la tabla -->
+<thead>
+    <tr>
+        <th>Name</th>
+        <th>Subject</th>
+        <th>Class</th>
+        <th>Email</th>
+        <th>Gender</th>
+    </tr>
+</thead>
+<tbody>
+    <?php foreach ($resultados as $fila) : ?>
+        <tr>
+            <td><?php echo $fila['Nombre']; ?></td>
+            <td><?php echo $fila['Subject']; ?></td>
+            <td><?php echo $fila['Class']; ?></td>
+            <td><?php echo $fila['Email']; ?></td>
+            <td><?php echo $fila['Genero']; ?></td>
+        </tr>
+    <?php endforeach; ?>
+</tbody>
+
+                                </table>
+                            </div>
                         </div>
                     </div>
 
@@ -266,31 +325,107 @@ $nombre = $_SESSION['nombre'];
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">See you </div>
+                <div class="modal-body">Estas por Salir</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-danger" href="../backend/logout.php">Exit</a>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <a class="btn btn-primary" href="backend/logout.php">Salir</a>
                 </div>
             </div>
         </div>
     </div>
 
+
+<!-- Modal para add Teachers-->
+<div class="modal" id="addTeach" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" >
+  <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Teacher</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                            </button>
+                            </div>
+                            <div class="modal-body">
+                            <!--FORM-->
+                            <form>
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="nombre">Nombre:</label>
+      <input type="text" class="form-control" id="nombre">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="apaterno">Apellido Paterno:</label>
+      <input type="text" class="form-control" id="apaterno">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="amaterno">Apellido Materno:</label>
+      <input type="text" class="form-control" id="amaterno">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="password">Contraseña:</label>
+      <input type="password" class="form-control" id="password">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="genero">Género:</label>
+      <select class="form-control" id="genero">
+        <option value="masculino">Masculino</option>
+        <option value="femenino">Femenino</option>
+        <option value="X">X</option>
+        <option value="X">Putito</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <label for="email">Correo Electrónico:</label>
+      <input type="email" class="form-control" id="email">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inscripcion">Número de Inscripción:</label>
+      <input type="number" class="form-control" id="inscripcion" min="1" max="15">
+    </div>
+    <!-- Otros campos sobrantes -->
+  </div>
+</form>
+
+                            <!--FIN FORM-->
+                            </div>
+                        <div class="modal-footer">
+                    <button class="btn btn-light btn-icon-split" style="background-color: #FFFFFF; color: #4F4F4F;" type="button" data-dismiss="modal">
+                
+                    <span class="icon" style="background-color: #FFFFFF">
+                        <i class="fas fa-circle-plus"></i>
+                        </span>
+                        <span class="text">Add Another</span>
+                    </button>
+                    <button class="btn btn-light" style="background-color: #F1F1F1; color: #4F4F4F;" type="button" data-dismiss="modal">Add Student</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- FIN Modal para add alums-->
+
+
     <!-- Bootstrap core JavaScript-->
-    <script src="../vendor/jquery/jquery.min.js"></script>
-    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="../js/sb-admin-2.min.js"></script>
+    <script src="js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="../js/demo/datatables-demo.js"></script>
+    <script src="js/demo/datatables-demo.js"></script>
 
 </body>
 

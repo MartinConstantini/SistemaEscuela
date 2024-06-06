@@ -63,17 +63,36 @@ $nombre = $_SESSION['nombre'];
             </li>
 
             <li class="nav-item rounded" style="background-color: #2D88D4;">
-                <a class="nav-link" href="" style="color: white;">
-                <i class="fas fa-fw fa-chalkboard-user"></i>
-                <span>Teachers</span>
+                <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapseUtilities" style="color: white;">
+                    <i class="fas fa-fw fa-chalkboard-user"></i>
+                    <span>Teachers</span>
                 </a>
+                <!-- HTML -->
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                <div class="py-2 collapse-inner" style="width: 100%; color: white;">
+                <a class="collapse-item" href="" style="color: white;"> > All Teachers</a>
+                <a class="collapse-item" href="" style="color: white;"> > Admision Form</a>
+                <a class="collapse-item" href="" style="color: white;"> > Teacher Promotion</a>
+                <a class="collapse-item" href="" style="color: white;"> > Class</a>
+                </div>
+            </div>
             </li>
 
+
             <li class="nav-item rounded">
-                <a class="nav-link" href="alum.php" style="color: white;">            
-                <i class="fas fa-fw fa-user-pen"></i>
-                <span>Students/class</span>
+                <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapseUtilities" style="color: white;">
+                    <i class="fas fa-fw fa-user-pen"></i>
+                    <span>Students/class</span>
                 </a>
+                <!-- HTML -->
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                <div class="py-2 collapse-inner" style="width: 100%; color: white;">
+                <a class="collapse-item" href="alum.php" style="color: white;"> > All students</a>
+                <a class="collapse-item" href="" style="color: white;"> > Admision Form</a>
+                <a class="collapse-item" href="" style="color: white;"> > Student Promotion</a>
+                <a class="collapse-item" href="" style="color: white;"> > Class</a>
+                </div>
+            </div>
             </li>
 
             <li class="nav-item rounded">
